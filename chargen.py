@@ -14,9 +14,19 @@ from char import *
 def createchar():
 	if input("Player Character? (y/N): ").upper() == "Y":
 		name = input("Character Name: ")
-
+		gender = input("Gender: ")
+		age = input("Age: ")
+		birthday = input("Birthday: ")
+		height = input("Height: ")
+		weight = input("Weight: ")
+		hair = input("Hair Colour: ")
+		eyes = input("Eye Colour: ")
+		skin = input("Skin Colour: ")
+		handedness = input("Handedness: ")
+		homeland = input("Homeland: ")
 	else:
-
+		name = input("Character Name: ")
+	
 
 
 #########################################################
