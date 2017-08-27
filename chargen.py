@@ -26,13 +26,25 @@ def createchar():
 		homeland = input("Homeland: ")
 	else:
 		name = input("Character Name: ")
+
 	race = 'START'
 	while race not in races.keys():
 		race = input('Race: ').upper()
 		if race == "LIST":
 			print(racelist)
 
-	
+	order = 'START'
+	while order not in orders.keys():
+		order = input('Order: ').upper()
+		if order == "LIST":
+			print("ORDER LIST:\n")
+			for i in orders:
+				print(i + ": " + orders[i])
+			print()
+			
+
+
+
 
 
 #########################################################
