@@ -42,7 +42,7 @@ def createchar():
 				print(i + ": " + orders[i])
 			print()
 
-	if input("Roll random attributes? (Y/n): ") == "N":
+	if input("Roll random attributes? (Y/n): ").upper() == "N":
 		attrs = collections.OrderedDict(sorted({"BRG":input("BRG: "), "NIM":input("NIM: "), "PER":input("PER: "), "STR":input("STR: "), "VIT":input("VIT: "), "WIT":input("WIT: ")}.items()))
 	else:
 		rolls = []
@@ -53,8 +53,13 @@ def createchar():
 		R.shuffle(rolls)				#randomises order
 		attrs = collections.OrderedDict(sorted(dict(zip(["BRG", "NIM", "PER", "STR", "VIT", "WIT"],rolls)).items()))
 
+	attrmods = collections.OrderedDict(sorted(dict(zip(["BRG", "NIM", "PER", "STR", "VIT", "WIT"], attrmod(list(self.attrs.values())))).items()))
 
-
+	reas = collections.OrderedDict(sorted({"STA":0, "SWI":0, "WIL":0, "WIS":0}.items()))
+	reas["STA"] = max([attrmods["STR"], attrmods["VIT"]])
+	reas["SWI"] = max([attrmods["NIM"], attrmods["PER"]])
+	reas["WIL"] = max([attrmods["BRG"], attrmods["WIT"]])
+	reas["WIS"] = max([attrmods["BRG"], attrmods["PER"]])
 
 
 #########################################################
