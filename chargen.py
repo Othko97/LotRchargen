@@ -26,6 +26,12 @@ def createchar():
 		homeland = input("Homeland: ")
 	else:
 		name = input("Character Name: ")
+	race = 'START'
+	while race not in races.keys():
+		race = input('Race: ').upper()
+		if race == "LIST":
+			print(racelist)
+
 	
 
 
