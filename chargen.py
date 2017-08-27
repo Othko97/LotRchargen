@@ -41,7 +41,17 @@ def createchar():
 			for i in orders:
 				print(i + ": " + orders[i])
 			print()
-			
+
+	if input("Roll random attributes? (Y/n): ") == "N":
+		attrs = collections.OrderedDict(sorted({"BRG":input("BRG: "), "NIM":input("NIM: "), "PER":input("PER: "), "STR":input("STR: "), "VIT":input("VIT: "), "WIT":input("WIT: ")}.items()))
+	else:
+		rolls = []
+		for i in range(9):
+			rolls.append(twoDsix())		#rolls 9, takes highest 6
+		rolls.sort(reverse=True)
+		rolls = rolls[:6]
+		R.shuffle(rolls)				#randomises order
+		attrs = collections.OrderedDict(sorted(dict(zip(["BRG", "NIM", "PER", "STR", "VIT", "WIT"],rolls)).items()))
 
 
 
@@ -52,17 +62,6 @@ def createchar():
 #########################################################
 
 class Char():
-
-	#Roll random Attributes
-	def rollrandattrs(self):
-		rolls = []
-		for i in range(9):
-			rolls.append(twoDsix())		#rolls 9, takes highest 6
-		rolls.sort(reverse=True)
-		rolls = rolls[:6]
-		R.shuffle(rolls)				#randomises order
-		self.attrs = collections.OrderedDict(sorted(dict(zip(["BRG", "NIM", "PER", "STR", "VIT", "WIT"],rolls)).items()))
-
 	#Adds racial modifiers to attributes
 	def racialmod(self):
 		#adds racial mods for character's race
