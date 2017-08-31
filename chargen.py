@@ -61,6 +61,20 @@ def createchar():
 	reas["WIL"] = max([attrmods["BRG"], attrmods["WIT"]])
 	reas["WIS"] = max([attrmods["BRG"], attrmods["PER"]])
 
+	hp = attrs["VIT"] + attrmods["STR"]
+
+	if race in hobbits:
+		wls = 5
+	else:
+		wls = 6
+
+	dfce = 10 + attrs["NIM"]
+	cou = 3
+	corr = 0
+	level = 0
+
+	
+
 
 #########################################################
 #ANYTHING BELOW THIS POINT IS OLD CODE BEING MOVED ABOVE#
