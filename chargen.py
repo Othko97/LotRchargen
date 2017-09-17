@@ -11,6 +11,37 @@ from char import *
 
 #DEFINING CLASSES AND FUNCTIONS
 
+def racincskill(race, skills, traits):
+	racstufflist = []
+	print("\nEnter 3 letter skill/trait code to increase \n")
+	print("SKILLS: ")
+	for x in racskills[race]:
+		print(x, skillnames[x], skills[x])
+		racstufflist.append(x)
+	print("\nTRAITS: ")
+	for x in ractraits[race]:
+		print(x, traitnames[x], traits[x])
+		racstufflist.append(x)
+	inc = input("Enter code: ")
+	if inc == "RND":
+		i = R.randint(1,len(racstufflist))-1
+		if i < len(racskills[race]):
+			skills[racstufflist[i]] += 1
+			return(1)
+		else:
+			traits[racstufflist[i]] += 1
+			return(1)
+	if inc in skills:
+		skills[inc] += 1
+		return(1)
+	elif inc in traits:
+		if traits[inc] < traitmaxes[inc]:
+			traits[inc] += 1
+			return(1)
+		else:
+			print("Already taken to maximum level")
+			return(0)
+
 def createchar():
 	if input("Player Character? (y/N): ").upper() == "Y":
 		name = input("Character Name: ")
@@ -52,6 +83,7 @@ def createchar():
 		rolls = rolls[:6]
 		R.shuffle(rolls)				#randomises order
 		attrs = collections.OrderedDict(sorted(dict(zip(["BRG", "NIM", "PER", "STR", "VIT", "WIT"],rolls)).items()))
+	attrs = collections.OrderedDict(sorted(dict(zip(list(attrs.keys()), add(list(attrs.values()),list(racattradjs[race].values())))).items()))
 
 	attrmods = collections.OrderedDict(sorted(dict(zip(["BRG", "NIM", "PER", "STR", "VIT", "WIT"], attrmod(list(self.attrs.values())))).items()))
 
@@ -73,7 +105,22 @@ def createchar():
 	corr = 0
 	level = 0
 
-	
+	skills = skilltemp
+	traits = traitstemp
+
+	print("Choose a background from the list below:\nBACKGROUNDS: \n")
+	for i in backs[race]:
+		print(i)
+	print()
+	bg = input("Enter background (default N): ")
+	if bg in backs[race]:
+		skills = collections.OrderedDict(sorted(dict(zip(list(skills.keys()), add(list(skills.values()),list(bgskilladjs[bg].values())))).items()))
+	else:
+		i = 0
+		while i < 6:
+			i += racincskill(race, skills, traits)
+
+
 
 
 #########################################################
@@ -93,53 +140,13 @@ class Char():
 			else:
 				self.skills["LOR"] += 1
 
-	#Adds background modifiers
-	def bgmod(self):
-		#adds mods for pre made background
-		self.skills = collections.OrderedDict(sorted(dict(zip(list(self.skills.keys()), add(list(self.skills.values()),list(bgskilladjs[self.background].values())))).items()))
-
-		#if no premade background adds 6 picks
-		if self.background == "N":
-			i = 0
-			while i < 6:
-				i += self.racincskill()
-
 	#Adds order package modifiers
 	def packmod(self):
 		#adds mods for pre made package
 		self.skills = collections.OrderedDict(sorted(dict(zip(list(self.skills.keys()), add(list(self.skills.values()),list(packskilladjs[self.pack].values())))).items()))
 
 	#System to increment skills for race
-	def racincskill(self):
-		racstufflist = []
-		print("\nEnter 3 letter skill/trait code to increase \n")
-		print("SKILLS: ")
-		for x in racskills[self.race]:
-			print(x, skillnames[x], self.skills[x])
-			racstufflist.append(x)
-		print("\nTRAITS: ")
-		for x in ractraits[self.race]:
-			print(x, traitnames[x], self.traits[x])
-			racstufflist.append(x)
-		inc = input("Enter code: ")
-		if inc == "RND":
-			i = R.randint(1,len(racstufflist))-1
-			if i < len(racskills[self.race]):
-				self.skills[racstufflist[i]] += 1
-				return(1)
-			else:
-				self.traits[racstufflist[i]] += 1
-				return(1)
-		if inc in self.skills:
-			self.skills[inc] += 1
-			return(1)
-		elif inc in self.traits:
-			if self.traits[inc] < traitmaxes[inc]:
-				self.traits[inc] += 1
-				return(1)
-			else:
-				print("Already taken to maximum level")
-				return(0)
+
 
 	#System to increment skills for order
 	def ordincskill(self):

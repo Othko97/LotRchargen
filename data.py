@@ -16,7 +16,7 @@ elves   = {"NOL":"Noldo", "SIN":"Sinda", "SIL":"Silva"}
 hobbits = {"FAL":"Fallohide", "HAR":"Harfoot", "STO":"Stoor"}
 men     = {"DUN":"Dunedain", "MID":"Middle men", "MOD":"Men of Darkness", "WM":"Wild men"}
 
-racelist = "RACELIST\n\nDWARVES:\nDWA: Dwarf\n\nELVES:\nNOL: Noldo\nSIN: Sinda\nSIL: Silva\n\nHOBBITS:\nFAL: Fallowhide\nHAR: Harfoot\nSTO: Stoor\n\nMEN:\nDUN: Dunedan\nMID: Middle man\nMOD: Man of Darkness\nWM:  Wild Man" 
+racelist = "RACELIST\n\nDWARVES:\nDWA: Dwarf\n\nELVES:\nNOL: Noldo\nSIN: Sinda\nSIL: Silva\n\nHOBBITS:\nFAL: Fallowhide\nHAR: Harfoot\nSTO: Stoor\n\nMEN:\nDUN: Dunedan\nMID: Middle man\nMOD: Man of Darkness\nWM:  Wild Man"
 
 racattradjs = {
 "D":{"BRG":0, "NIM":0, "PER":0, "STR":2, "VIT":2, "WIT":0},
@@ -676,6 +676,8 @@ fabacks = {"N":"None", "BAG":"Baggins (Fallohide)", "BOL":"Bolger (Fallohide)", 
 mibacks = {"N":"None", "BEO":"Beorning (Middle Man)", "DUL":"Dunlending (Middle Man)", "MOB":"Man of Bree (Middle Man)", "MOE":"Man of Dale (Middle Man)", "MOG":"Man of Gondor (Middle Man)", "ROR":"Rider of Rohan (Middle Man)"}
 mdbacks = {"N":"None", "EAS":"Easterling (Man of Darkness)", "SOU":"Southron Tribesman (Man of Darkness)"}
 dubacks = {"N":"None", "MOM":"Man of Minas Tirith (Dunadan)"}
+
+backs = {"D":dwbacks, "NOL":nobacks, "SIN":snbacks, "SIL":slbacks, "FAL":fabacks, "HAR":habacks, "STO":habacks, "DUN":dubacks, "MID":mibacks, "MOD":mdbacks, "WM":mdbacks}
 
 bgskilladjs = {
 "N":collections.OrderedDict(sorted({

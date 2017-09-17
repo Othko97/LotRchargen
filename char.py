@@ -40,7 +40,7 @@ def attrmod(list):
 #Character object
 class Char():
 
-    def __init__(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level):
+    def __init__(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, ren, langs, lore):
 		self.name = name
 		self.race = race
 		self.order = order
@@ -56,9 +56,12 @@ class Char():
 		self.traits = traits
 		self.abilities = abilities
 		self.level = level
+		self.ren = ren
+		self.langs = langs
+		self.lore = lore
 		print("\nCharacter Created!\n")
 
-	def update(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level):
+	def update(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, ren, langs, lore):
 		self.name = name
 		self.race = race
 		self.order = order
@@ -74,6 +77,9 @@ class Char():
 		self.traits = traits
 		self.abilities = abilities
 		self.level = level
+		self.ren = ren
+		self.langs = langs
+		self.lore = lore
 		self.save()
 		print("\nCharacter Updated!\n")
 
@@ -86,6 +92,7 @@ class Char():
         char = open(self.name + '.txt', 'w+')
 
         char.write('Name: ' + self.name)
+		char.write('Level: ' +str(self.level))
         char.write('\nRace: ' + races[self.race])
         char.write('\nOrders:\n')
         for i in self.order:
@@ -101,6 +108,7 @@ class Char():
         char.write('\nDefence: ' + str(self.dfce))
         char.write('\nCourage: ' + str(self.cou))
         char.write('\nCorruption: ' + str(self.corr))
+		char.write('\nRenown' + str(self.ren))
         char.write('\n\nSkills:')
         for i in self.skills:
             char.write('\n' + str(i) + '\t' + str(skillnames[i]) + '\t' +  str(self.skills[i]))
@@ -110,7 +118,13 @@ class Char():
                 char.write('\n' + str(i) + '\t' + str(traitnames[i]) + '\t' + str(self.traits[i]))
         char.write('\n\nAbilities: ')
         for i in self.abilities:
-            char.write('\n' + str(self.abilities[i]))
+            char.write('\n' + i)
+		char.write('\n\nLanguages: ')
+		for i in self.langs:
+            char.write('\n' + i)
+		char.write('\n\nLore Skills: ')
+		for i in self.lore:
+            char.write('\n' + i)
 
         char.close()
 
