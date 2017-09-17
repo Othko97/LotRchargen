@@ -860,6 +860,8 @@ nobpacks = {"BNOB":"Basic Noble", "GOL":"Gondorian Lord", "ERG":"Eriadorian Gent
 rogpacks = {"BROG":"Basic Rogue", "BUR":"Burglar", "OUT":"Outlaw", "LUR":"Lurker", "PIC":"Pickpocket"}
 warpacks = {"BWAR":"Basic Warrior", "BOW":"Bowman", "HOR":"Horseman", "SCO":"Scout", "SEN":"Sentinel", "SHR":"Shirriff"}
 
+packs = {"BAR":barpacks, "CRA":crapacks, "LOR":lorpacks, "MAG":magpacks, "MAR":marpacks, "MIN":minpacks, "NOB":nobpacks, "ROG":rogpacks, "WAR":warpacks}
+
 packskilladjs = {
 "BBAR":collections.OrderedDict(sorted({
 "ACR":0, "APP":0, "ARM":2, "CLI":1, "CON":0, "CRA":0, "DEB":0, "GAM":0, "GUI":0, "HEA":0, "INQ":0, "ING":0, "INP":0, "INM":0, "JUM":0, "LAN":0, "LEG":0, "LOR":0,

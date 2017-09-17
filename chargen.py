@@ -42,7 +42,26 @@ def racincskill(race, skills, traits):
 			print("Already taken to maximum level")
 			return(0)
 
+def ordincskill(self):
+	print("\nEnter 3 letter skill code to increase \n")
+	orskillist = []
+	for x in orderskills[order]:
+		if x in orskillist:
+			pass
+		else:
+			orskillist.append(x)
+	for x in orskillist:
+		print(x, skillnames[x], self.skills[x])
+	inc = input("Enter code: ")
+	if inc == "RND":
+		self.skills[orskillist[R.randint(1,len(orskillist))-1]]
+	if inc in self.skills:
+		self.skills[inc] += 1
+	elif inc in self.traits:
+		self.traits[inc] += 1
+
 def createchar():
+	#Takes PC specific data
 	if input("Player Character? (y/N): ").upper() == "Y":
 		name = input("Character Name: ")
 		gender = input("Gender: ")
@@ -55,15 +74,17 @@ def createchar():
 		skin = input("Skin Colour: ")
 		handedness = input("Handedness: ")
 		homeland = input("Homeland: ")
-	else:
+	else:	#Takes NPC data only
 		name = input("Character Name: ")
 
-	race = 'START'
+	#loops until valid race given
+	race = 'START'	#placeholder
 	while race not in races.keys():
 		race = input('Race: ').upper()
 		if race == "LIST":
 			print(racelist)
 
+	#loops until valid order given
 	order = 'START'
 	while order not in orders.keys():
 		order = input('Order: ').upper()
@@ -103,7 +124,8 @@ def createchar():
 	dfce = 10 + attrs["NIM"]
 	cou = 3
 	corr = 0
-	level = 0
+	ren = 0
+	level = 1
 
 	skills = skilltemp
 	traits = traitstemp
@@ -130,78 +152,17 @@ def createchar():
 		else:						#pls
 			skills["LOR"] += 1		#tom
 
+	print("Choose a package from the list below:\nPACKAGES: \n")
+	availablepacks = []
+	for j in packs[order]:
+		print(j)
+		availablepacks.append(j)
+	print()
+	pack = input("Enter package (default basic [first order]): ").upper()
+	if pack not in availablepacks:
+		pack = "B" + orders
+	else:
+		skills = collections.OrderedDict(sorted(dict(zip(list(skills.keys()), add(list(skills.values()),list(packskilladjs[pack].values())))).items()))
 
-
-
-#########################################################
-#ANYTHING BELOW THIS POINT IS OLD CODE BEING MOVED ABOVE#
-#########################################################
-
-class Char():
-	#Adds order package modifiers
-	def packmod(self):
-		#adds mods for pre made package
-		self.skills = collections.OrderedDict(sorted(dict(zip(list(self.skills.keys()), add(list(self.skills.values()),list(packskilladjs[self.pack].values())))).items()))
-
-
-	#System to increment skills for order
-	def ordincskill(self):
-		print("\nEnter 3 letter skill code to increase \n")
-		orskillist = []
-		for i in self.orders:
-			for x in orderskills[i]:
-				if x in orskillist:
-					pass
-				else:
-					orskillist.append(x)
-		for x in orskillist:
-			print(x, skillnames[x], self.skills[x])
-		inc = input("Enter code: ")
-		if inc == "RND":
-			self.skills[orskillist[R.randint(1,len(orskillist))-1]]
-		if inc in self.skills:
-			self.skills[inc] += 1
-		elif inc in self.traits:
-			self.traits[inc] += 1
-
-	#Initialisation of instance
-	def __init__(self, name, race, order, background, pack, gender):
-		self.name = name
-		self.race = race
-		self.orders = []
-		if order != "N":
-			self.orders.append(order)
-		self.background = background
-		self.gender = gender
-		self.reas = reactemp
-		self.rollrandattrs()
-		self.skills = skilltemp
-		self.traits = traitstemp
-		self.racialmod()
-		self.attrmods = collections.OrderedDict(sorted(dict(zip(["BRG", "NIM", "PER", "STR", "VIT", "WIT"], attrmod(list(self.attrs.values())))).items()))
-		self.bgmod()
-		self.pack = pack
-		self.packmod()
-		for i in range(5):
-			self.ordincskill()
-		#self.setreas()
-		self.defence = 10 + self.attrs["NIM"]
-		self.hp = self.attrs["VIT"] + self.attrmods["STR"]
-		if self.race in hobbits:
-			self.wounds = 5
-		else:
-			self.wounds = 6
-		self.courage = 3
-		self.renown = 0
-
-#Main program
-def createchar():
-	name = input("Enter name: ")
-	race = input("Enter race: ")
-	order = input("Enter order: ")
-	background = input("Enter background: ")
-	gender = input("Enter Gender: ")
-
-	char = Char(name, race, order, background, pack, gender)
-	print('Saving to file')
-	char.save()
+	for i in range(5):
+		ordincskill()
