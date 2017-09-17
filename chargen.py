@@ -112,13 +112,23 @@ def createchar():
 	for i in backs[race]:
 		print(i)
 	print()
-	bg = input("Enter background (default N): ")
+	bg = input("Enter background (default N): ").upper()
 	if bg in backs[race]:
 		skills = collections.OrderedDict(sorted(dict(zip(list(skills.keys()), add(list(skills.values()),list(bgskilladjs[bg].values())))).items()))
 	else:
 		i = 0
 		while i < 6:
 			i += racincskill(race, skills, traits)
+
+	#adds racial mods for character's race
+	attrs = collections.OrderedDict(sorted(dict(zip(list(attrs.keys()), add(list(attrs.values()),list(racattradjs[race].values())))).items()))
+
+	#adds 3*WIT to language and lore
+	for i in range(attrs["WIT"]*3):	#make
+		if R.randint(1,2) == 1:		#this
+			skills["LAN"] += 1		#better
+		else:						#pls
+			skills["LOR"] += 1		#tom
 
 
 
@@ -128,24 +138,10 @@ def createchar():
 #########################################################
 
 class Char():
-	#Adds racial modifiers to attributes
-	def racialmod(self):
-		#adds racial mods for character's race
-		self.attrs = collections.OrderedDict(sorted(dict(zip(list(self.attrs.keys()), add(list(self.attrs.values()),list(racattradjs[self.race].values())))).items()))
-
-		#adds 3*WIT to language and lore
-		for i in range(self.attrs["WIT"]*3):
-			if R.randint(1,2) == 1:
-				self.skills["LAN"] += 1
-			else:
-				self.skills["LOR"] += 1
-
 	#Adds order package modifiers
 	def packmod(self):
 		#adds mods for pre made package
 		self.skills = collections.OrderedDict(sorted(dict(zip(list(self.skills.keys()), add(list(self.skills.values()),list(packskilladjs[self.pack].values())))).items()))
-
-	#System to increment skills for race
 
 
 	#System to increment skills for order
@@ -167,13 +163,6 @@ class Char():
 			self.skills[inc] += 1
 		elif inc in self.traits:
 			self.traits[inc] += 1
-
-	#Calculates reactions from attributes
-	def setreas(self):
-		self.reas["STA"] = max([self.attrmods["STR"], self.attrmods["VIT"]])
-		self.reas["SWI"] = max([self.attrmods["NIM"], self.attrmods["PER"]])
-		self.reas["WIL"] = max([self.attrmods["BRG"], self.attrmods["WIT"]])
-		self.reas["WIS"] = max([self.attrmods["BRG"], self.attrmods["PER"]])
 
 	#Initialisation of instance
 	def __init__(self, name, race, order, background, pack, gender):
