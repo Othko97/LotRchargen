@@ -869,6 +869,8 @@ warpacks = {"N":"None", "BWAR":"Basic Warrior", "BOW":"Bowman", "HOR":"Horseman"
 packs = {"BAR":barpacks, "CRA":crapacks, "LOR":lorpacks, "MAG":magpacks, "MAR":marpacks, "MIN":minpacks, "NOB":nobpacks, "ROG":rogpacks, "WAR":warpacks}
 
 packskilladjs = {
+"N":skilltemp,
+
 "BBAR":collections.OrderedDict(sorted({
 "ACR":0, "APP":0, "ARM":2, "CLI":1, "CON":0, "CRA":0, "DEB":0, "GAM":0, "GUI":0, "HEA":0, "INQ":0, "ING":0, "INP":0, "INM":0, "JUM":0, "LAN":0, "LEG":0, "LOR":0,
 "MIM":0, "OBS":2, "PER":0, "PRS":0, "RAN":0, "RID":0, "RUN":1, "SEA":0, "SRC":0, "SIE":0, "SMI":0, "STE":3, "STO":0, "SUR":0, "SWI":0, "TEA":0, "TRA":3, "UNA":0,
