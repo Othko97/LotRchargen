@@ -17,6 +17,7 @@ from char import *
 #DEFINING CLASSES AND FUNCTIONS#
 ################################
 
+#MAY MOVE THIS SECTION TO CHAR.PY
 
 #RACIAL SKILL INCREASE
 #
@@ -49,7 +50,7 @@ def racincskill(race, skills, traits):
 			skills[racstufflist[i]] += 1
 			return([skills, traits, 1])
 		else:
-			traits[racstufflist[i]] += 1
+			traits[racstufflist[i]] += 1		#make sure can't take maxed trait!
 			return([race, skills, traits, 1])
 	
 	#Increment skill from list
@@ -141,23 +142,46 @@ def packagechoosetrait(order, pack, traits):
 		print("Not a valid code")
 		return([traits, 0])
 
+#CHOOSE AN EDGE
+#
+#Takes an edge
+	#Returns a 2-tuple of traits and a check
+
 def choosetrait(traits):
 	print("\nEnter 3 letter trait code to choose \n")
+
+	#Display edges
 	for trait in edges:
 		print(trait, traitnames[trait], traits[trait])
+
+	#Handle User Input
 	inc = input("Enter code: ").upper()
+
+	#Increment random edge
 	if inc == "RND":
-		traits[list(edges.keys())[R.randint(0, len(list(edges.keys()))-1)]] += 1
-	if inc in traits:
+		traits[list(edges.keys())[R.randint(0, len(list(edges.keys()))-1)]] += 1	#make sure can't take maxed trait!
+							#also change data.edges to a list rather than dict
+
+	#Increment User-chosen trait
+	elif inc in traits:																
 		if traits[inc] < traitmaxes[inc]:
 			traits[inc] += 1
 			return([traits, 1])
 		else:
 			print("Already taken to maximum level")
 			return([traits, 0])
+	
+	#Handle case where code not valid
 	else:
 		print("Not a valid code")
 		return([traits, 0])
+
+
+
+
+##################################
+#MAIN CHARACTER CREATION FUNCTION#
+##################################
 
 def createchar():
 	#Takes PC specific data
@@ -178,14 +202,14 @@ def createchar():
 		pc = False
 		name = input("Character Name: ")
 
-	#loops until valid race given
+	#Loops until valid race given
 	race = 'START'	#placeholder
 	while race not in races.keys():
 		race = input('Race: ').upper()
 		if race == "LIST":
 			print(racelist)
 
-	#loops until valid order given
+	#Loops until valid order given
 	order = 'START'
 	while order not in orders.keys():
 		order = input('Order: ').upper()
@@ -195,8 +219,10 @@ def createchar():
 				print(i + ": " + orders[i])
 			print()
 
-	if input("Roll random attributes? (Y/n): ").upper() == "N":
+	#Roll/Choose attributes
+	if input("Roll random attributes? (Y/n): ").upper() == "N":	#user input of attributes
 		attrs = collections.OrderedDict(sorted({"BRG":input("BRG: "), "NIM":input("NIM: "), "PER":input("PER: "), "STR":input("STR: "), "VIT":input("VIT: "), "WIT":input("WIT: ")}.items()))
+	#Random Roll of attributes
 	else:
 		rolls = []
 		for i in range(9):
@@ -205,40 +231,54 @@ def createchar():
 		rolls = rolls[:6]
 		R.shuffle(rolls)				#randomises order
 		attrs = collections.OrderedDict(sorted(dict(zip(["BRG", "NIM", "PER", "STR", "VIT", "WIT"],rolls)).items()))
-	attrs = collections.OrderedDict(sorted(dict(zip(list(attrs.keys()), add(list(attrs.values()),list(racattradjs[race].values())))).items()))
-
+	
+	#Find attribute modifiers
 	attrmods = collections.OrderedDict(sorted(dict(zip(["BRG", "NIM", "PER", "STR", "VIT", "WIT"], attrmod(list(attrs.values())))).items()))
 
+	#Find reactions
 	reas = collections.OrderedDict(sorted({"STA":0, "SWI":0, "WIL":0, "WIS":0}.items()))
 	reas["STA"] = max([attrmods["STR"], attrmods["VIT"]])
 	reas["SWI"] = max([attrmods["NIM"], attrmods["PER"]])
 	reas["WIL"] = max([attrmods["BRG"], attrmods["WIT"]])
 	reas["WIS"] = max([attrmods["BRG"], attrmods["PER"]])
 
+	#Find HP
 	hp = attrs["VIT"] + attrmods["STR"]
 
+	#Set wound levels
 	if race in hobbits:
 		wls = 5
 	else:
 		wls = 6
 
+	#Set defence, courage, corruption, renown and level (to 1)
 	dfce = 10 + attrs["NIM"]
 	cou = 3
 	corr = 0
 	ren = 0
 	level = 1
 
+	#Create empty lists of skills, traits
 	skills = skilltemp
 	traits = traitstemp
 
+
+	#RACIAL BACKGROUND
 	print("Choose a background from the list below:\nBACKGROUNDS: \n")
+	#Display options
 	for i in backs[race]:
 		print(i + ": " + backs[race][i])
 	print()
+	#Handle User Input
 	bg = input("Enter background (default N): ").upper()
-	if bg in backs[race]:
-		skills = collections.OrderedDict(sorted(dict(zip(list(skills.keys()), add(list(skills.values()),list(bgskilladjs[bg].values())))).items()))
-	else:
+	
+	#Adds background modifiers, or runs no background
+	if bg not in backs[race]:
+		bg = "N"
+	
+	skills = collections.OrderedDict(sorted(dict(zip(list(skills.keys()), add(list(skills.values()),list(bgskilladjs[bg].values())))).items()))
+	
+	if bg == "N":
 		i = 0
 		while i < 6: 
 			templist = racincskill(race, skills, traits)
@@ -256,17 +296,23 @@ def createchar():
 		else:						#pls
 			skills["LOR"] += 1		#tom
 
+	#ORDER PACKAGES
 	print("Choose a package from the list below:\nPACKAGES: \n")
 	availablepacks = []
+	#Gather & display available packages
 	for j in packs[order]:
 		print(j + ": " + packs[order][j])
 		availablepacks.append(j)
 	print()
-	pack = input("Enter package (default basic [first order]): ").upper()
+
+	#Handle User Input
+	pack = input("Enter package (default basic [order]): ").upper()
+	#Adds package skills, defaults to no basic [order]
 	if pack not in availablepacks:
-		pack = "B" + order[0]
+		pack = "B" + order
 	else:
 		skills = collections.OrderedDict(sorted(dict(zip(list(skills.keys()), add(list(skills.values()),list(packskilladjs[pack].values())))).items()))
+	#Handle case of no package
 	if pack == "N":
 		i=0
 		while i < 15:
@@ -274,18 +320,21 @@ def createchar():
 			skills = templist[0]
 			i +=  templist[1]
 
+	#Add 5 free picks of order skills
 	i=0
 	while i < 5:
 		templist = ordincskill([order], skills)
 		skills = templist[0]
 		i +=  templist[1]
 	
+	#For no package, choose any edge
 	if pack == "N":
 		i = 0
 		while i < 1:
 			templist = choosetrait(traits)
 			traits = templist[0]
 			i += templist[1]
+	#For packages, choose from edges listed
 	else:
 		i = 0
 		while i < 1:
@@ -293,6 +342,7 @@ def createchar():
 			traits = templist[0]
 			i += templist[1]
 
+	#Create character object
 	if pc:
 		char = Player(name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, gender, age, birthday, height, weight, hair, eyes, skin, handedness, homeland)
 	else:
@@ -302,4 +352,5 @@ def createchar():
 	char.save()
 
 
+#TESTING
 createchar()
