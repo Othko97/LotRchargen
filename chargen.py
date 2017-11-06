@@ -1,6 +1,8 @@
 """creates characters in LotR system"""
 
-#IMPORTS
+#########
+#IMPORTS#
+#########
 
 import random as R
 import os
@@ -9,60 +11,158 @@ from data import *
 from char import *
 
 
-#DEFINING CLASSES AND FUNCTIONS
+
+
+################################
+#DEFINING CLASSES AND FUNCTIONS#
+################################
+
+
+#RACIAL SKILL INCREASE
+#
+#Increase a racial skill or trait
+	#Returns 3-tuple of skills, traits and a check that a skill was actually increased
 
 def racincskill(race, skills, traits):
 	racstufflist = []
 	print("\nEnter 3 letter skill/trait code to increase \n")
+
+	#Gather & display relevant skills
 	print("SKILLS: ")
 	for x in racskills[race]:
 		print(x, skillnames[x], skills[x])
 		racstufflist.append(x)
+	
+	#Gather & display relevant traits
 	print("\nTRAITS: ")
 	for x in ractraits[race]:
 		print(x, traitnames[x], traits[x])
 		racstufflist.append(x)
-	inc = input("Enter code: ")
+	
+	#Handle User Input
+	inc = input("Enter code: ").upper()
+	
+	#Increment random value from list
 	if inc == "RND":
 		i = R.randint(1,len(racstufflist))-1
 		if i < len(racskills[race]):
 			skills[racstufflist[i]] += 1
-			return(1)
+			return([skills, traits, 1])
 		else:
 			traits[racstufflist[i]] += 1
-			return(1)
-	if inc in skills:
+			return([race, skills, traits, 1])
+	
+	#Increment skill from list
+	elif inc in skills:
 		skills[inc] += 1
-		return(1)
+		return([skills, traits, 1])
+
+	#Increment trait from list
 	elif inc in traits:
 		if traits[inc] < traitmaxes[inc]:
 			traits[inc] += 1
-			return(1)
+			return([skills, traits, 1])
 		else:
 			print("Already taken to maximum level")
-			return(0)
+			return([skills, traits, 0])
+	
+	#Handle case where code not valid
+	else:
+		print("Not a valid code")
+		return([race, skills, traits, 0])
 
-def ordincskill(self):
+
+#INCREASE ORDER SKILL
+#
+#Increase an order skill
+	#Returns a 2-tuple of skills and a check that a skill was increased
+
+def ordincskill(order, skills):
 	print("\nEnter 3 letter skill code to increase \n")
 	orskillist = []
-	for x in orderskills[order]:
-		if x in orskillist:
-			pass
-		else:
-			orskillist.append(x)
-	for x in orskillist:
-		print(x, skillnames[x], self.skills[x])
-	inc = input("Enter code: ")
+
+	#Gather & display relevant skills
+	for o in order:
+		for x in orderskills[o]:
+			if x in orskillist:
+				pass
+			else:
+				orskillist.append(x)
+				print(x, skillnames[x], skills[x])
+	
+	#Handle User Input
+	inc = input("Enter code: ").upper()
+	#Increment random skill in list
 	if inc == "RND":
-		self.skills[orskillist[R.randint(1,len(orskillist))-1]]
-	if inc in self.skills:
-		self.skills[inc] += 1
-	elif inc in self.traits:
-		self.traits[inc] += 1
+		skills[orskillist[R.randint(1,len(orskillist))-1]] += 1
+		return([skills, 1])
+
+	#Increment user-chosen skill
+	if inc in skills:
+		skills[inc] += 1
+		return([skills, 1])
+
+	#Handle case where code not valid
+	else:
+		print("Not a valid code")
+		return([skills, 0])
+
+
+#CHOOSE PACKAGE TRAIT
+#
+#Choose an edge for a background package
+	#Returns a 2-tuple of traits and a check that a trait was actually taken
+
+def packagechoosetrait(order, pack, traits):
+	print("\nEnter 3 letter trait code to choose \n")
+
+	#Display available traits
+	for trait in ordertraits[order][pack]:
+		print(trait, traitnames[trait], traits[trait])
+	
+	#Handle User Input
+	inc = input("Enter code: ").upper()
+
+	#Take random trait from list
+	if inc == "RND":
+		traits[ordertraits[order][pack][R.randint(1,5)]] += 1
+	
+	#Increment User-chosen trait
+	if inc in traits:
+		if traits[inc] < traitmaxes[inc]:
+			traits[inc] += 1
+			return([traits, 1])
+		else:
+			print("Already taken to maximum level")
+			return([traits, 0])
+	
+	#Handle case where code not valid
+	else:
+		print("Not a valid code")
+		return([traits, 0])
+
+def choosetrait(traits):
+	print("\nEnter 3 letter trait code to choose \n")
+	for trait in edges:
+		print(trait, traitnames[trait], traits[trait])
+	inc = input("Enter code: ").upper()
+	if inc == "RND":
+		traits[list(edges.keys())[R.randint(0, len(list(edges.keys()))-1)]] += 1
+	if inc in traits:
+		if traits[inc] < traitmaxes[inc]:
+			traits[inc] += 1
+			return([traits, 1])
+		else:
+			print("Already taken to maximum level")
+			return([traits, 0])
+	else:
+		print("Not a valid code")
+		return([traits, 0])
 
 def createchar():
 	#Takes PC specific data
 	if input("Player Character? (y/N): ").upper() == "Y":
+		pc = True
 		name = input("Character Name: ")
 		gender = input("Gender: ")
 		age = input("Age: ")
@@ -75,6 +175,7 @@ def createchar():
 		handedness = input("Handedness: ")
 		homeland = input("Homeland: ")
 	else:	#Takes NPC data only
+		pc = False
 		name = input("Character Name: ")
 
 	#loops until valid race given
@@ -106,7 +207,7 @@ def createchar():
 		attrs = collections.OrderedDict(sorted(dict(zip(["BRG", "NIM", "PER", "STR", "VIT", "WIT"],rolls)).items()))
 	attrs = collections.OrderedDict(sorted(dict(zip(list(attrs.keys()), add(list(attrs.values()),list(racattradjs[race].values())))).items()))
 
-	attrmods = collections.OrderedDict(sorted(dict(zip(["BRG", "NIM", "PER", "STR", "VIT", "WIT"], attrmod(list(self.attrs.values())))).items()))
+	attrmods = collections.OrderedDict(sorted(dict(zip(["BRG", "NIM", "PER", "STR", "VIT", "WIT"], attrmod(list(attrs.values())))).items()))
 
 	reas = collections.OrderedDict(sorted({"STA":0, "SWI":0, "WIL":0, "WIS":0}.items()))
 	reas["STA"] = max([attrmods["STR"], attrmods["VIT"]])
@@ -132,15 +233,18 @@ def createchar():
 
 	print("Choose a background from the list below:\nBACKGROUNDS: \n")
 	for i in backs[race]:
-		print(i)
+		print(i + ": " + backs[race][i])
 	print()
 	bg = input("Enter background (default N): ").upper()
 	if bg in backs[race]:
 		skills = collections.OrderedDict(sorted(dict(zip(list(skills.keys()), add(list(skills.values()),list(bgskilladjs[bg].values())))).items()))
 	else:
 		i = 0
-		while i < 6:
-			i += racincskill(race, skills, traits)
+		while i < 6: 
+			templist = racincskill(race, skills, traits)
+			skills = templist[0]
+			traits = templist[1]
+			i += templist[2]
 
 	#adds racial mods for character's race
 	attrs = collections.OrderedDict(sorted(dict(zip(list(attrs.keys()), add(list(attrs.values()),list(racattradjs[race].values())))).items()))
@@ -155,14 +259,47 @@ def createchar():
 	print("Choose a package from the list below:\nPACKAGES: \n")
 	availablepacks = []
 	for j in packs[order]:
-		print(j)
+		print(j + ": " + packs[order][j])
 		availablepacks.append(j)
 	print()
 	pack = input("Enter package (default basic [first order]): ").upper()
 	if pack not in availablepacks:
-		pack = "B" + orders
+		pack = "B" + order[0]
 	else:
 		skills = collections.OrderedDict(sorted(dict(zip(list(skills.keys()), add(list(skills.values()),list(packskilladjs[pack].values())))).items()))
+	if pack == "N":
+		i=0
+		while i < 15:
+			templist = ordincskill([order], skills)
+			skills = templist[0]
+			i +=  templist[1]
 
-	for i in range(5):
-		ordincskill()
+	i=0
+	while i < 5:
+		templist = ordincskill([order], skills)
+		skills = templist[0]
+		i +=  templist[1]
+	
+	if pack == "N":
+		i = 0
+		while i < 1:
+			templist = choosetrait(traits)
+			traits = templist[0]
+			i += templist[1]
+	else:
+		i = 0
+		while i < 1:
+			templist = packagechoosetrait(order, pack, traits)
+			traits = templist[0]
+			i += templist[1]
+
+	if pc:
+		char = Player(name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, gender, age, birthday, height, weight, hair, eyes, skin, handedness, homeland)
+	else:
+		char = Char(name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, ren, langs, lore)
+	 
+	char.output()
+	char.save()
+
+
+createchar()

@@ -195,6 +195,12 @@ traitstemp = collections.OrderedDict(sorted({
 "STI":0, "WEK":0, "WEW":0
 }.items()))
 
+edges = traitstemp = collections.OrderedDict(sorted({
+"ACC":0, "ALL":0, "AMB":0, "AOH":0, "BOL":0, "CHL":0, "COM":0, "CRF":0, "CUR":0, "DOD":0, "DOU":0, "ELF":0, "ELO":0, "FAI":0, "FTH":0, "FOF":0, "FEH":0, "FOR":0,
+"FRI":0, "FUR":0, "GOT":0, "HAM":0, "HAR":0, "HEL":0, "HOA":0, "HOT":0, "HOI":0, "INC":0, "IND":0, "EAR":0, "EYE":0, "NOS":0, "LIO":0, "NIT":0, "QUI":0, "RAN":0,
+"RES":0, "STE":0, "STW":0, "SWR":0, "TIR":0, "TRV":0, "TWO":0, "VAT":0, "VAR":0, "WAK":0, "WAH":0, "WAW":0, "WAR":0, "WEM":0, "WIS":0, "WOO":0
+}.items()))
+
 traitnames = collections.OrderedDict(sorted({
 "ACC":"Accurate", "ALL":"Ally", "AMB":"Ambidextrous", "AOH":"Armour of Heroes", "BOL":"Bold", "CHL":"Charmed Life", "COM":"Command", "CRF":"Craftmaster", "CUR":"Curious", "DOD":"Dodge", "DOU":"Doughty", "ELF":"Elf-friend", "ELO":"Eloquent", "FAI":"Fair", "FTH":"Faithful", "FOF":"Favour of Fortune", "FEH":"Fell-handed", "FOR":"Foresighted",
 "FRI":"Friends", "FUR":"Furtive", "GOT":"Gift of Tongues", "HAM":"Hammerhand", "HAR":"Hardy", "HEL":"Healing Hands", "HOA":"Hoard", "HOT":"Honey-Tongued", "HOI":"Honour's Insight", "INC":"Incorruptible", "IND":"Indomitable", "EAR":"Keen-eared", "EYE":"Keen-eyed", "NOS":"Keen-nosed", "LIO":"Lion-hearted", "NIT":"Night-eyed", "QUI":"Quick-draw", "RAN":"Rank",
@@ -850,15 +856,15 @@ bgskilladjs = {
 }
 
 #ORDER PACKAGES
-barpacks = {"BBAR":"Basic Barbarian", "DRU":"Druadan Tribesman", "SON":"Southron Nomad", "LOS":"Losson Tribesman", "MOU":"Mountain Folk"}
-crapacks = {"BCRA":"Basic Craftsman", "GAR":"Gardener", "INN":"Innkeeper", "SMI":"Smith", "MAS":"Stonemason"}
-lorpacks = {"BLOR":"Basic Loremaster", "ERI":"Eriadorian Sage", "GOS":"Gondorian Scholar", "MTH":"Minas Tirith Healer", "RIS":"Rivendell Scholar", "WIW":"Wise Woman"}
-magpacks = {"BMAG":"Basic Magician", "WIA":"Wizards Apprentice", "SSA":"Student of the Secret Arts", "TRM":"Travelling Magician", "TIM":"Tribal Magician"}
-marpacks = {"BMAR":"Basic Mariner", "FIS":"Fisherman", "NAV":"Navy", "RIV":"Riverman", "SHI":"Shipwright"}
-minpacks = {"BMIN":"Basic Minstrel", "GOM":"Gondorian Minstrel", "PER":"Performer", "ROB":"Rohirric Bard", "TRC":"Tribal Chanter"}
-nobpacks = {"BNOB":"Basic Noble", "GOL":"Gondorian Lord", "ERG":"Eriadorian Gentry", "LOF":"Leader of Folk", "CHF":"Tribal Chieftain"}
-rogpacks = {"BROG":"Basic Rogue", "BUR":"Burglar", "OUT":"Outlaw", "LUR":"Lurker", "PIC":"Pickpocket"}
-warpacks = {"BWAR":"Basic Warrior", "BOW":"Bowman", "HOR":"Horseman", "SCO":"Scout", "SEN":"Sentinel", "SHR":"Shirriff"}
+barpacks = {"N":"None", "BBAR":"Basic Barbarian", "DRU":"Druadan Tribesman", "SON":"Southron Nomad", "LOS":"Losson Tribesman", "MOU":"Mountain Folk"}
+crapacks = {"N":"None", "BCRA":"Basic Craftsman", "GAR":"Gardener", "INN":"Innkeeper", "SMI":"Smith", "MAS":"Stonemason"}
+lorpacks = {"N":"None", "BLOR":"Basic Loremaster", "ERI":"Eriadorian Sage", "GOS":"Gondorian Scholar", "MTH":"Minas Tirith Healer", "RIS":"Rivendell Scholar", "WIW":"Wise Woman"}
+magpacks = {"N":"None", "BMAG":"Basic Magician", "WIA":"Wizards Apprentice", "SSA":"Student of the Secret Arts", "TRM":"Travelling Magician", "TIM":"Tribal Magician"}
+marpacks = {"N":"None", "BMAR":"Basic Mariner", "FIS":"Fisherman", "NAV":"Navy", "RIV":"Riverman", "SHI":"Shipwright"}
+minpacks = {"N":"None", "BMIN":"Basic Minstrel", "GOM":"Gondorian Minstrel", "PER":"Performer", "ROB":"Rohirric Bard", "TRC":"Tribal Chanter"}
+nobpacks = {"N":"None", "BNOB":"Basic Noble", "GOL":"Gondorian Lord", "ERG":"Eriadorian Gentry", "LOF":"Leader of Folk", "CHF":"Tribal Chieftain"}
+rogpacks = {"N":"None", "BROG":"Basic Rogue", "BUR":"Burglar", "OUT":"Outlaw", "LUR":"Lurker", "PIC":"Pickpocket"}
+warpacks = {"N":"None", "BWAR":"Basic Warrior", "BOW":"Bowman", "HOR":"Horseman", "SCO":"Scout", "SEN":"Sentinel", "SHR":"Shirriff"}
 
 packs = {"BAR":barpacks, "CRA":crapacks, "LOR":lorpacks, "MAG":magpacks, "MAR":marpacks, "MIN":minpacks, "NOB":nobpacks, "ROG":rogpacks, "WAR":warpacks}
 
@@ -1145,3 +1151,32 @@ packskilladjs = {
 "WEA":0
 }.items()))
 }
+
+
+#Package Traits
+
+bartraits = {"BBAR":["DOU", "HAR", "TIR", "WAR", "WOO"], "DRU":["ACC", "DOD", "NIT", "WAR", "WOO"], "SON":["HAR", "EYE", "TRV", "TIR", "WOO"], "LOS":["ACC", "HAR", "TRV", "WAK", "WOO"], "MOU":["DOU", "FEH", "SWR", "WOO"]}
+cratraits = {"BCRA":["AMB", "CRF", "FOF", "FRI", "HOA"], "GAR":["CHL", "CRF", "FOF", "FRI", "WIS"], "INN":["CRF", "FRI", "HOA", "HOT", "WAK"], "SMI":["CRF", "DOU", "HAR", "FRI", "HOA"], "MAS":["CRF", "DOU", "HAR", "FRI", "HOA"]}
+lortraits = {"BLOR":["CUR", "GOT", "HEL", "HOI", "WIS"], "ERI":["CUR", "ELF", "FRI", "HEL", "WIS"], "GOS":["HOA", "HOT", "RAN", "STE", "WIS"], "MTH":["FRI", "GOT", "HEL", "RES", "WIS"], "RIS":["CUR", "ELF", "GOT", "HEL", "WIS"], "WIW":["ALL", "ELO", "HAR", "HOT", "WIS"]}
+magtraits = {"BMAG":["AOH", "CHL", "CUR", "STW", "WIS"], "WIA":["CUR", "STW", "VAT", "VAR", "WIS"], "SSA":["ALL", "CUR", "HOT", "RAN", "STW"], "TRM":["AOH", "CHL", "CUR", "FRI", "WIS"], "TIM":["CUR", "FRI", "HAR", "WIS", "WOO"]}
+martraits = {"BMAR":["AMB", "DOU", "HAR", "EYE", "TRV"], "FIS":["CRF", "DOU", "HAR", "EYE", "TRV"], "NAV":["ALL", "COM", "RAN", "STE", "WAW"], "RIV":["DOU", "HAR", "EYE", "TIR", "WOO"], "SHI":["CRF", "DOD", "ELF", "FRI", "EYE"]}
+mintraits = {"BMIN":["FOF", "FRI", "GOT", "HOT", "EYE"], "GOM":["CUR", "DOD", "FRI", "HOT", "EYE"], "PER":["CHL", "FOF", "FRI", "HOT", "EYE"], "ROB":["ALL", "FRI", "HAR", "HOT", "EYE"], "TRC":["ALL", "FRI", "HAR", "HOT", "EYE"]}
+nobtraits = {"BNOB":["COM", "HEL", "HOA", "RAN", "STE"], "GOL":["COM", "HEL", "HOA", "RAN", "STE"], "ERG":["CHL", "FRI", "HOA", "HOT", "RAN"], "LOF":["AOH", "COM", "RAN", "HOA", "STE"], "CHF":["ALL", "COM", "HOA", "RAN", "WOO"]}
+rogtraits = {"BROG":["DOD", "FRI", "FUR", "NIT", "WAR"], "BUR":["AMB", "DOD", "FUR", "EYE", "WAR"], "OUT":["DOD", "FRI", "HAR", "STW", "TIR"], "LUR":["DOD", "FRI", "FUR", "HOT", "WAR"], "PIC":["AMB", "DOD", "FRI", "FUR", "WAR"]}
+wartraits = {"BWAR":["BOL", "COM", "VAT", "WAH", "WAW"], "BOW":["ACC", "AOH", "QUI", "VAT", "WAW"], "HOR":["BOL", "FEH", "HOI", "WAH", "WAW"], "SCO":["COM", "RES", "WAH", "WAW", "WOO"], "SEN":["EAR", "EYE", "NIT", "WAK", "WAR"], "SHR":["ACC", "DOD", "FRI", "EAR", "EYE"]}
+
+ordertraits = {"BAR":bartraits, "CRA":cratraits, "LOR":lortraits, "MAG":magtraits, "MAR":martraits, "MIN":mintraits, "NOB":nobtraits, "ROG":rogtraits, "WAR":wartraits}
+
+#Order Abilities
+
+barabils = ["Brew Poison", "Champion", "Hard March", "Marking-Signs", "Preferred Weapon", "Walk Without Trace"]
+craabils = ["Enchantment", "Masterwork", "Place Of Trade", "Preservation", "Refuge", "Speedy Work"]
+lorabils = ["Ancient Scripts", "Expertise", "Scroll Hoard", "Secretive", "Spellcasting", "Vala Virtue"]
+magabils = ["Spellcasting", "Dwimmer-Crafty", "Sanctum", "Sanctum Power", "Spellcasting Method", "Spell Specialty", "Wizard's Heart"]
+marabils = ["Diver", "Rope-craft", "Sailor's Eye", "Sea Legs", "Ship", "Wind-mastery"]
+minabils = ["Gladden", "Inspiring Performance", "Jugglery", "Natural Talent", "Voice of Power", "Woven Words"]
+nobabils = ["Courtier", "Cross-Order Skill", "Deference", "Domain", "Noble Mien"]
+rogabils = ["Fleet-Footed", "Lockpicking", "Lurking in Shadows", "Sanctuary"]
+warabils = ["Battle-Hardened", "Evasion", "Favoured Weapon", "Swift Strike", "Warrior-born"]
+
+orderabils = {"BAR":barabils, "CRA":craabils, "LOR":lorabils, "MAG":magabils, "MAR":marabils, "MIN":minabils, "NOB":nobabils, "ROG":rogabils, "WAR":warabils}
