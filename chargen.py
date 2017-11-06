@@ -179,6 +179,7 @@ def choosetrait(traits):
 
 
 
+
 ##################################
 #MAIN CHARACTER CREATION FUNCTION#
 ##################################
@@ -341,6 +342,19 @@ def createchar():
 			templist = packagechoosetrait(order, pack, traits)
 			traits = templist[0]
 			i += templist[1]
+	
+	#ORDER ABILITIES
+	abilities = []
+	print("Choose an order ability from the list below:\nABILITIES: \n")
+	for i in range(len(orderabils[order])):
+		print(str(i) + ": " + orderabils[order][i])
+	
+	ability = -1
+	while ability not in list(range(len(orderabils[order]))):
+		ability = int(input("Enter Number: "))
+	
+	abilities.append(orderabils[order][ability])
+
 
 	#Create character object
 	if pc:
