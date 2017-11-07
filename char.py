@@ -5,6 +5,7 @@ from data import *
 import random as R
 import collections
 import os
+import pickle
 
 #DEFINING CLASSES AND FUNCTIONS
 
@@ -132,37 +133,8 @@ class Char():
         if not os.path.exists(dirname):
             os.makedirs(dirname)
         os.chdir(dirname)
-        char = open(self.name + '.txt', 'w+')
-
-        char.write(self.name)
-        char.write('\n' + self.race)
-        char.write('\n')
-        for i in self.order:
-            char.write(i + ',')
-        char.write('\n')
-        for i in self.attrs:
-            char.write(str(self.attrs[i]) + ',')
-        char.write('\n')
-        for i in self.attrmods:
-            char.write(str(self.attrmods[i]) + ',')
-        char.write('\n')
-        for i in self.reas:
-            char.write(str(self.reas[i]) + ',')
-        char.write('\n' + str(self.hp))
-        char.write('\n' + str(self.wls))
-        char.write('\n' + str(self.dfce))
-        char.write('\n' + str(self.cou))
-        char.write('\n' + str(self.corr))
-        char.write('\n')
-        for i in self.skills:
-            char.write(str(self.skills[i]) + ',')
-        char.write('\n')
-        for i in self.traits:
-            char.write(str(self.traits[i]) + ',')
-        char.write('\n')
-        for i in self.abilities:
-            char.write(str(self.abilities[i]) + ',')
-
+        char = open(self.name + '.py', 'wb')
+        pickle.dump(self, char)
         char.close()
 
     def output(self):
@@ -210,34 +182,34 @@ class Player(Char):
 
 #TESTING
 #
-#Earendil = Char(name="Earendil",
-#race="NOL",
-#order=["MAR"],
-#attrs=collections.OrderedDict(sorted({"BRG":0, "NIM":0, "PER":0, "STR":0, "VIT":0, "WIT":0}.items())),
-#attrmods=collections.OrderedDict(sorted({"BRG":0, "NIM":0, "PER":0, "STR":0, "VIT":0, "WIT":0}.items())),
-#reas=collections.OrderedDict(sorted({"STA":0, "SWI":0, "WIL":0, "WIS":0}.items())),
-#hp=10,
-#wls=5,
-#dfce=10,
-#cou=3,
-#corr=0,
-#skills=collections.OrderedDict(sorted({
-#"ACR":0, "APP":0, "ARM":0, "CLI":0, "CON":0, "CRA":0, "DEB":0, "GAM":0, "GUI":0, "HEA":0, "INQ":0, "ING":0, "INP":0, "INM":0, "JUM":0, "LAN":0, "LEG":0, "LOR":0,
-#"MIM":0, "OBS":0, "PER":0, "PRS":0, "RAN":0, "RID":4, "RUN":4, "SEA":0, "SRC":0, "SIE":0, "SMI":2, "STE":4, "STO":0, "SUR":0, "SWI":0, "TEA":0, "TRA":0, "UNA":0,
-#"WEA":0
-#}.items())),
-#traits=collections.OrderedDict(sorted({
-#"ACC":0, "ALL":0, "AMB":0, "AOH":0, "BOL":0, "CHL":0, "COM":0, "CRF":0, "CUR":0, "DOD":0, "DOU":0, "ELF":0, "ELO":0, "FAI":0, "FTH":0, "FOF":0, "FEH":0, "FOR":0,
-#"FRI":0, "FUR":0, "GOT":0, "HAM":0, "HAR":0, "HEL":0, "HOA":0, "HOT":0, "HOI":0, "INC":0, "IND":0, "EAR":0, "EYE":0, "NOS":0, "LIO":0, "NIT":0, "QUI":0, "RAN":0,
-#"RES":0, "STE":0, "STW":0, "SWR":0, "TIR":0, "TRV":0, "TWO":0, "VAT":0, "VAR":0, "WAK":0, "WAH":0, "WAW":0, "WAR":0, "WEM":0, "WIS":0, "WOO":0, "ARR":0, "BAT":0,
-#"COH":0, "CRV":0, "CRI":0, "DAR":0, "DUM":0, "DEA":0, "DEY":0, "DUT":0, "ENE":0, "FEA":0, "FEY":0, "GRA":0, "HAT":0, "OAT":0, "PRO":0, "REC":0, "RIV":0, "SLO":0,
-#"STI":0, "WEK":0, "WEW":0
-#}.items())),
-#abilities=[],
-#level=1,
-#ren=0,
-#langs=["Sindarin"],
-#lore=["Gondolin", "Sea"]
-#)
+Earendil = Char(name="Earendil",
+race="NOL",
+order=["MAR"],
+attrs=collections.OrderedDict(sorted({"BRG":0, "NIM":0, "PER":0, "STR":0, "VIT":0, "WIT":0}.items())),
+attrmods=collections.OrderedDict(sorted({"BRG":0, "NIM":0, "PER":0, "STR":0, "VIT":0, "WIT":0}.items())),
+reas=collections.OrderedDict(sorted({"STA":0, "SWI":0, "WIL":0, "WIS":0}.items())),
+hp=10,
+wls=5,
+dfce=10,
+cou=3,
+corr=0,
+skills=collections.OrderedDict(sorted({
+"ACR":0, "APP":0, "ARM":0, "CLI":0, "CON":0, "CRA":0, "DEB":0, "GAM":0, "GUI":0, "HEA":0, "INQ":0, "ING":0, "INP":0, "INM":0, "JUM":0, "LAN":0, "LEG":0, "LOR":0,
+"MIM":0, "OBS":0, "PER":0, "PRS":0, "RAN":0, "RID":4, "RUN":4, "SEA":0, "SRC":0, "SIE":0, "SMI":2, "STE":4, "STO":0, "SUR":0, "SWI":0, "TEA":0, "TRA":0, "UNA":0,
+"WEA":0
+}.items())),
+traits=collections.OrderedDict(sorted({
+"ACC":0, "ALL":0, "AMB":0, "AOH":0, "BOL":0, "CHL":0, "COM":0, "CRF":0, "CUR":0, "DOD":0, "DOU":0, "ELF":0, "ELO":0, "FAI":0, "FTH":0, "FOF":0, "FEH":0, "FOR":0,
+"FRI":0, "FUR":0, "GOT":0, "HAM":0, "HAR":0, "HEL":0, "HOA":0, "HOT":0, "HOI":0, "INC":0, "IND":0, "EAR":0, "EYE":0, "NOS":0, "LIO":0, "NIT":0, "QUI":0, "RAN":0,
+"RES":0, "STE":0, "STW":0, "SWR":0, "TIR":0, "TRV":0, "TWO":0, "VAT":0, "VAR":0, "WAK":0, "WAH":0, "WAW":0, "WAR":0, "WEM":0, "WIS":0, "WOO":0, "ARR":0, "BAT":0,
+"COH":0, "CRV":0, "CRI":0, "DAR":0, "DUM":0, "DEA":0, "DEY":0, "DUT":0, "ENE":0, "FEA":0, "FEY":0, "GRA":0, "HAT":0, "OAT":0, "PRO":0, "REC":0, "RIV":0, "SLO":0,
+"STI":0, "WEK":0, "WEW":0
+}.items())),
+abilities=[],
+level=1,
+ren=0,
+langs=["Sindarin"],
+lore=["Gondolin", "Sea"]
+)
 
-#Earendil.save()
+Earendil.save()
