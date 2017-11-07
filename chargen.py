@@ -45,13 +45,18 @@ def racincskill(race, skills, traits):
 	
 	#Increment random value from list
 	if inc == "RND":
-		i = R.randint(1,len(racstufflist))-1
-		if i < len(racskills[race]):
-			skills[racstufflist[i]] += 1
-			return([skills, traits, 1])
-		else:
-			traits[racstufflist[i]] += 1		#make sure can't take maxed trait!
-			return([race, skills, traits, 1])
+		check = 0
+		while check == 0:
+			i = R.randint(1,len(racstufflist))-1
+			if i < len(racskills[race]):
+				skills[racstufflist[i]] += 1
+				check = 1
+				return([skills, traits, 1])
+			else:
+				if traits[racstufflist[i]] < traitmaxes[racstufflist[i]]:
+					traits[racstufflist[i]] += 1
+					check = 1
+					return([race, skills, traits, 1])
 	
 	#Increment skill from list
 	elif inc in skills:
@@ -159,7 +164,12 @@ def choosetrait(traits):
 
 	#Increment random edge
 	if inc == "RND":
-		traits[edges[R.randint(0, len(edges)-1)]] += 1	#make sure can't take maxed trait!
+		check = 0
+		while check == 0:
+			x = R.randint(0, len(edges)-1)
+			if traits[edges[x]] < traitmaxes[edges[x]]:
+				traits[edges[x]] += 1
+				check = 1
 
 	#Increment User-chosen trait
 	elif inc in traits:																
