@@ -9,9 +9,9 @@ attrtemp = collections.OrderedDict(sorted({"BRG":0, "NIM":0, "PER":0, "STR":0, "
 reactemp = collections.OrderedDict(sorted({"STA":0, "SWI":0, "WIL":0, "WIS":0}.items()))
 
 #RACES
-races = {"D":"Dwarf", "NOL":"Noldo", "SIN":"Sinda", "SIL":"Silva", "FAL":"Fallohide", "HAR":"Harfoot", "STO":"Stoor", "DUN":"Dunedain", "MID":"Middle men", "MOD":"Men of Darkness", "WM":"Wild men"}
+races = {"DWA":"Dwarf", "NOL":"Noldo", "SIN":"Sinda", "SIL":"Silva", "FAL":"Fallohide", "HAR":"Harfoot", "STO":"Stoor", "DUN":"Dunedain", "MID":"Middle men", "MOD":"Men of Darkness", "WM":"Wild men"}
 
-dwarves = {"D":"Dwarf"}
+dwarves = {"DWA":"Dwarf"}
 elves   = {"NOL":"Noldo", "SIN":"Sinda", "SIL":"Silva"}
 hobbits = {"FAL":"Fallohide", "HAR":"Harfoot", "STO":"Stoor"}
 men     = {"DUN":"Dunedain", "MID":"Middle men", "MOD":"Men of Darkness", "WM":"Wild men"}

@@ -327,7 +327,7 @@ def createchar():
 					x[1] += 1
 					check = 1
 			if check == 0:
-				langs.append([loreskill, 1])
+				lore.append([loreskill, 1])
 			i += 1
 		
 		else:
@@ -398,9 +398,9 @@ def createchar():
 
 	#Create character object
 	if pc:
-		char = Player(name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, gender, age, birthday, height, weight, hair, eyes, skin, handedness, homeland)
+		char = Player(name, race, [order], attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, gender, age, birthday, height, weight, hair, eyes, skin, handedness, homeland)
 	else:
-		char = Char(name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, ren, langs, lore)
+		char = Char(name, race, [order], attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, ren, langs, lore)
 	 
 	char.output()
 	char.save()
