@@ -159,8 +159,7 @@ def choosetrait(traits):
 
 	#Increment random edge
 	if inc == "RND":
-		traits[list(edges.keys())[R.randint(0, len(list(edges.keys()))-1)]] += 1	#make sure can't take maxed trait!
-							#also change data.edges to a list rather than dict
+		traits[edges[R.randint(0, len(edges)-1)]] += 1	#make sure can't take maxed trait!
 
 	#Increment User-chosen trait
 	elif inc in traits:																
@@ -291,11 +290,40 @@ def createchar():
 	attrs = collections.OrderedDict(sorted(dict(zip(list(attrs.keys()), add(list(attrs.values()),list(racattradjs[race].values())))).items()))
 
 	#adds 3*WIT to language and lore
-	for i in range(attrs["WIT"]*3):	#make
-		if R.randint(1,2) == 1:		#this
-			skills["LAN"] += 1		#better
-		else:						#pls
-			skills["LOR"] += 1		#tom
+	print("Add 3x WIT to language and lore skills.\n")
+	langs = []
+	lore = []
+	i = 0
+	while i < 3*attrs["WIT"]:
+		print("\n" + str(3*attrs["WIT"]-i) + " to choose.")
+		choice = input("LAN/LOR: ").upper()
+
+		if choice == "LAN":
+			language = input("Enter language: ")
+			check = 0
+			for x in langs:
+				if language == x[0]:
+					x[1] += 1
+					check = 1
+			if check == 0:
+				langs.append([language, 1])
+			i += 1
+		
+		elif choice == "LOR":
+			loreskill = input("Enter lore skill: ")
+			check = 0
+			for x in lore:
+				if loreskill == x[0]:
+					x[1] += 1
+					check = 1
+			if check == 0:
+				langs.append([loreskill, 1])
+			i += 1
+		
+		else:
+			print("Must be either 'LAN' or 'LOR'\n")
+
+
 
 	#ORDER PACKAGES
 	print("Choose a package from the list below:\nPACKAGES: \n")
@@ -346,9 +374,11 @@ def createchar():
 	#ORDER ABILITIES
 	abilities = []
 	print("Choose an order ability from the list below:\nABILITIES: \n")
+	#Display available abilities
 	for i in range(len(orderabils[order])):
 		print(str(i) + ": " + orderabils[order][i])
 	
+	#Handle user input
 	ability = -1
 	while ability not in list(range(len(orderabils[order]))):
 		ability = int(input("Enter Number: "))

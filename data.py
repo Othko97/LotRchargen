@@ -195,11 +195,11 @@ traitstemp = collections.OrderedDict(sorted({
 "STI":0, "WEK":0, "WEW":0
 }.items()))
 
-edges = traitstemp = collections.OrderedDict(sorted({
-"ACC":0, "ALL":0, "AMB":0, "AOH":0, "BOL":0, "CHL":0, "COM":0, "CRF":0, "CUR":0, "DOD":0, "DOU":0, "ELF":0, "ELO":0, "FAI":0, "FTH":0, "FOF":0, "FEH":0, "FOR":0,
-"FRI":0, "FUR":0, "GOT":0, "HAM":0, "HAR":0, "HEL":0, "HOA":0, "HOT":0, "HOI":0, "INC":0, "IND":0, "EAR":0, "EYE":0, "NOS":0, "LIO":0, "NIT":0, "QUI":0, "RAN":0,
-"RES":0, "STE":0, "STW":0, "SWR":0, "TIR":0, "TRV":0, "TWO":0, "VAT":0, "VAR":0, "WAK":0, "WAH":0, "WAW":0, "WAR":0, "WEM":0, "WIS":0, "WOO":0
-}.items()))
+edges = [
+"ACC", "ALL", "AMB", "AOH", "BOL", "CHL", "COM", "CRF", "CUR", "DOD", "DOU", "ELF", "ELO", "FAI", "FTH", "FOF", "FEH", "FOR",
+"FRI", "FUR", "GOT", "HAM", "HAR", "HEL", "HOA", "HOT", "HOI", "INC", "IND", "EAR", "EYE", "NOS", "LIO", "NIT", "QUI", "RAN",
+"RES", "STE", "STW", "SWR", "TIR", "TRV", "TWO", "VAT", "VAR", "WAK", "WAH", "WAW", "WAR", "WEM", "WIS", "WOO"
+]
 
 traitnames = collections.OrderedDict(sorted({
 "ACC":"Accurate", "ALL":"Ally", "AMB":"Ambidextrous", "AOH":"Armour of Heroes", "BOL":"Bold", "CHL":"Charmed Life", "COM":"Command", "CRF":"Craftmaster", "CUR":"Curious", "DOD":"Dodge", "DOU":"Doughty", "ELF":"Elf-friend", "ELO":"Eloquent", "FAI":"Fair", "FTH":"Faithful", "FOF":"Favour of Fortune", "FEH":"Fell-handed", "FOR":"Foresighted",
