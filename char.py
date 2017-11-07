@@ -1,28 +1,218 @@
 """Character Class for LotR DnD"""
 
-#IMPORTS
+#########
+#IMPORTS#
+#########
+
 from data import *
 import random as R
 import collections
 import os
 import pickle
 
-#DEFINING CLASSES AND FUNCTIONS
 
-#Roll 2d6
+
+
+################################
+#DEFINING CLASSES AND FUNCTIONS#
+################################
+
+#RACIAL SKILL INCREASE
+#
+#Increase a racial skill or trait
+	#Returns 3-tuple of skills, traits and a check that a skill was actually increased
+
+def racincskill(race, skills, traits):
+	racstufflist = []
+	print("\nEnter 3 letter skill/trait code to increase \n")
+
+	#Gather & display relevant skills
+	print("SKILLS: ")
+	for x in racskills[race]:
+		print(x, skillnames[x], skills[x])
+		racstufflist.append(x)
+	
+	#Gather & display relevant traits
+	print("\nTRAITS: ")
+	for x in ractraits[race]:
+		print(x, traitnames[x], traits[x])
+		racstufflist.append(x)
+	
+	#Handle User Input
+	inc = input("Enter code: ").upper()
+	
+	#Increment random value from list
+	if inc == "RND":
+		check = 0
+		while check == 0:
+			i = R.randint(1,len(racstufflist))-1
+			if i < len(racskills[race]):
+				skills[racstufflist[i]] += 1
+				check = 1
+				return([skills, traits, 1])
+			else:
+				if traits[racstufflist[i]] < traitmaxes[racstufflist[i]]:
+					traits[racstufflist[i]] += 1
+					check = 1
+					return([race, skills, traits, 1])
+	
+	#Increment skill from list
+	elif inc in skills:
+		skills[inc] += 1
+		return([skills, traits, 1])
+
+	#Increment trait from list
+	elif inc in traits:
+		if traits[inc] < traitmaxes[inc]:
+			traits[inc] += 1
+			return([skills, traits, 1])
+		else:
+			print("Already taken to maximum level")
+			return([skills, traits, 0])
+	
+	#Handle case where code not valid
+	else:
+		print("Not a valid code")
+		return([race, skills, traits, 0])
+
+
+#INCREASE ORDER SKILL
+#
+#Increase an order skill
+	#Returns a 2-tuple of skills and a check that a skill was increased
+
+def ordincskill(order, skills):
+	print("\nEnter 3 letter skill code to increase \n")
+	orskillist = []
+
+	#Gather & display relevant skills
+	for o in order:
+		for x in orderskills[o]:
+			if x in orskillist:
+				pass
+			else:
+				orskillist.append(x)
+				print(x, skillnames[x], skills[x])
+	
+	#Handle User Input
+	inc = input("Enter code: ").upper()
+	#Increment random skill in list
+	if inc == "RND":
+		skills[orskillist[R.randint(1,len(orskillist))-1]] += 1
+		return([skills, 1])
+
+	#Increment user-chosen skill
+	if inc in skills:
+		skills[inc] += 1
+		return([skills, 1])
+
+	#Handle case where code not valid
+	else:
+		print("Not a valid code")
+		return([skills, 0])
+
+
+#CHOOSE PACKAGE TRAIT
+#
+#Choose an edge for a background package
+	#Returns a 2-tuple of traits and a check that a trait was actually taken
+
+def packagechoosetrait(order, pack, traits):
+	print("\nEnter 3 letter trait code to choose \n")
+
+	#Display available traits
+	for trait in ordertraits[order][pack]:
+		print(trait, traitnames[trait], traits[trait])
+	
+	#Handle User Input
+	inc = input("Enter code: ").upper()
+
+	#Take random trait from list
+	if inc == "RND":
+		traits[ordertraits[order][pack][R.randint(1,5)]] += 1
+	
+	#Increment User-chosen trait
+	if inc in traits:
+		if traits[inc] < traitmaxes[inc]:
+			traits[inc] += 1
+			return([traits, 1])
+		else:
+			print("Already taken to maximum level")
+			return([traits, 0])
+	
+	#Handle case where code not valid
+	else:
+		print("Not a valid code")
+		return([traits, 0])
+
+
+#CHOOSE AN EDGE
+#
+#Takes an edge
+	#Returns a 2-tuple of traits and a check
+
+def choosetrait(traits):
+	print("\nEnter 3 letter trait code to choose \n")
+
+	#Display edges
+	for trait in edges:
+		print(trait, traitnames[trait], traits[trait])
+
+	#Handle User Input
+	inc = input("Enter code: ").upper()
+
+	#Increment random edge
+	if inc == "RND":
+		check = 0
+		while check == 0:
+			x = R.randint(0, len(edges)-1)
+			if traits[edges[x]] < traitmaxes[edges[x]]:
+				traits[edges[x]] += 1
+				check = 1
+
+	#Increment User-chosen trait
+	elif inc in traits:																
+		if traits[inc] < traitmaxes[inc]:
+			traits[inc] += 1
+			return([traits, 1])
+		else:
+			print("Already taken to maximum level")
+			return([traits, 0])
+	
+	#Handle case where code not valid
+	else:
+		print("Not a valid code")
+		return([traits, 0])
+
+
+#ROLL 2 D6
+#
+#Simulates rolling of 2d6
+    #Returns integer
+
 def twoDsix():
 	x = R.randint(1,6)
 	y = R.randint(1,6)
 	return(x+y)
 
-#Matrix Addition for lists
+
+#MATRIX ADDITION FOR LISTS
+#
+#Adds two lists together elementwise
+    #Returns list
+
 def add(list1, list2):
 	list = []
 	for i in range(len(list1)):
 		list.append(list1[i]+list2[i])
 	return(list)
 
-#Returns modifiers for attribute level
+
+#ATTRIBUTE MODIFIERS
+#
+#Calculates attribute modifiers for a given set of attributes
+    #Returns list of modifiers
+
 def attrmod(list):
 	out = []
 	for i in list:
@@ -38,7 +228,12 @@ def attrmod(list):
 			out.append((i // 2)-3)
 	return(out)
 
-#Character object
+
+
+##################
+#CHARACTER OBJECT#
+##################
+
 class Char():
 
     def __init__(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, ren, langs, lore):
@@ -189,7 +384,12 @@ class Char():
         for i in self.abilities:
             print(i + "\n")
 
-#Player Character object
+
+
+
+###################
+#PLAYER CHARACTERS#
+###################
 class Player(Char):
 	def __init__(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, gender, age, birthday, height, weight, hair, eyes, skin, handedness, homeland):
 		Char.__init__(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level)
@@ -203,6 +403,11 @@ class Player(Char):
 		self.skin = skin
 		self.handedness = handedness
 		self.homeland = homeland
+
+
+
+
+
 
 #TESTING
 #
