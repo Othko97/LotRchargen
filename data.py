@@ -19,7 +19,7 @@ men     = {"DUN":"Dunedain", "MID":"Middle men", "MOD":"Men of Darkness", "WM":"
 racelist = "RACELIST\n\nDWARVES:\nDWA: Dwarf\n\nELVES:\nNOL: Noldo\nSIN: Sinda\nSIL: Silva\n\nHOBBITS:\nFAL: Fallowhide\nHAR: Harfoot\nSTO: Stoor\n\nMEN:\nDUN: Dunedan\nMID: Middle man\nMOD: Man of Darkness\nWM:  Wild Man"
 
 racattradjs = {
-"D":{"BRG":0, "NIM":0, "PER":0, "STR":2, "VIT":2, "WIT":0},
+"DWA":{"BRG":0, "NIM":0, "PER":0, "STR":2, "VIT":2, "WIT":0},
 "NOL":{"BRG":2, "NIM":2, "PER":1, "STR":0, "VIT":0, "WIT":1},
 "SIN":{"BRG":1, "NIM":2, "PER":2, "STR":0, "VIT":1, "WIT":0},
 "SIL":{"BRG":1, "NIM":1, "PER":2, "STR":0, "VIT":0, "WIT":0},
@@ -33,7 +33,7 @@ racattradjs = {
 }
 
 racskills = {
-"D":["APP", "ARM", "CON", "CRA", "DEB", "GAM", "ING", "INP", "INM", "LAN", "LOR", "OBS", "PER", "PRS", "RAN", "SRC", "SIE", "SMI", "STO", "STE", "SUR", "TEA", "TRA", "WEA"],
+"DWA":["APP", "ARM", "CON", "CRA", "DEB", "GAM", "ING", "INP", "INM", "LAN", "LOR", "OBS", "PER", "PRS", "RAN", "SRC", "SIE", "SMI", "STO", "STE", "SUR", "TEA", "TRA", "WEA"],
 "NOL":["ACR", "ARM", "CLI", "CRA", "DEB", "HEA", "ING", "INP", "INM", "JUM", "LAN", "LOR", "MIM", "OBS", "PER", "PRS", "RAN", "RID", "RUN", "SEA", "SRC", "SMI", "STE", "SUR", "SWI", "TRA", "WEA"],
 "SIN":["ACR", "ARM", "CLI", "CRA", "DEB", "HEA", "ING", "INP", "INM", "JUM", "LAN", "LOR", "MIM", "OBS", "PER", "PRS", "RAN", "RID", "RUN", "SEA", "SRC", "SMI", "STE", "SUR", "SWI", "TRA", "WEA"],
 "SIL":["ACR", "ARM", "CLI", "CRA", "DEB", "HEA", "ING", "INP", "INM", "JUM", "LAN", "LOR", "MIM", "OBS", "PER", "PRS", "RAN", "RID", "RUN", "SEA", "SRC", "SMI", "STE", "SUR", "SWI", "TRA", "WEA"],
@@ -43,11 +43,11 @@ racskills = {
 "DUN":["ARM", "CLI", "CON", "CRA", "DEB", "GAM", "HEA", "INQ", "ING", "INP", "INM", "JUM", "LAN", "LOR", "OBS", "PER", "PRS", "RAN", "RID", "RUN", "SEA", "SRC", "SMI", "STO", "STE", "SUR", "SWI", "TEA", "TRA", "WEA"],
 "MID":["ARM", "CLI", "CON", "CRA", "DEB", "GAM", "HEA", "INQ", "ING", "INP", "INM", "JUM", "LAN", "LOR", "OBS", "PER", "PRS", "RAN", "RID", "RUN", "SEA", "SRC", "SMI", "STO", "STE", "SUR", "SWI", "TEA", "TRA", "WEA"],
 "MOD":["ARM", "CLI", "CON", "CRA", "DEB", "GAM", "HEA", "INQ", "ING", "INP", "INM", "JUM", "LAN", "LOR", "OBS", "PER", "PRS", "RAN", "RID", "RUN", "SEA", "SRC", "SMI", "STO", "STE", "SUR", "SWI", "TEA", "TRA", "WEA"],
-"WM":["ARM", "CLI", "CON", "CRA", "DEB", "GAM", "HEA", "INQ", "ING", "INP", "INM", "JUM", "LAN", "LOR", "OBS", "PER", "PRS", "RAN", "RID", "RUN", "SEA", "SRC", "SMI", "STO", "STE", "SUR", "SWI", "TEA", "TRA", "WEA"]
+"WM" :["ARM", "CLI", "CON", "CRA", "DEB", "GAM", "HEA", "INQ", "ING", "INP", "INM", "JUM", "LAN", "LOR", "OBS", "PER", "PRS", "RAN", "RID", "RUN", "SEA", "SRC", "SMI", "STO", "STE", "SUR", "SWI", "TEA", "TRA", "WEA"]
 }
 
 racskilladjs = {
-"D":collections.OrderedDict(sorted({
+"DWA":collections.OrderedDict(sorted({
 "ACR":0, "APP":0, "ARM":0, "CLI":0, "CON":0, "CRA":0, "DEB":0, "GAM":0, "GUI":0, "HEA":0, "INQ":0, "ING":0, "INP":0, "INM":0, "JUM":0, "LAN":0, "LEG":0, "LOR":0,
 "MIM":0, "OBS":0, "PER":0, "PRS":0, "RAN":0, "RID":-2, "RUN":0, "SEA":0, "SRC":0, "SIE":0, "SMI":2, "STE":0, "STO":2, "SUR":2, "SWI":0, "TEA":0, "TRA":0, "UNA":0,
 "WEA":0
@@ -115,7 +115,7 @@ racskilladjs = {
 }
 
 ractraits = {
-"D":["ALL", "CRF", "DOU", "FAI", "FEH", "FRI", "HAR", "HOA", "INC", "IND", "RES", "STE", "STW", "SWR", "TIR", "VAR", "WAK", "ARR", "COH", "DUT", "GRA", "PRO", "RIV", "STI"],
+"DWA":["ALL", "CRF", "DOU", "FAI", "FEH", "FRI", "HAR", "HOA", "INC", "IND", "RES", "STE", "STW", "SWR", "TIR", "VAR", "WAK", "ARR", "COH", "DUT", "GRA", "PRO", "RIV", "STI"],
 "NOL":["ACC", "ALL", "AMB", "CRF", "CUR", "DOD", "ELO", "FTH", "FRI", "GOT", "HOA", "HOT", "INC", "IND", "EAR", "NIT", "QUI", "RES", "STW", "TIR", "TRV", "VAR", "WEM", "WIS", "WOO", "ARR", "COH", "DUT", "PRO", "RIV", "STI"],
 "SIN":["ACC", "ALL", "AMB", "CRF", "CUR", "DOD", "ELO", "FTH", "FRI", "GOT", "HOA", "HOT", "INC", "IND", "EAR", "NIT", "QUI", "RES", "STW", "TIR", "TRV", "VAR", "WEM", "WIS", "WOO", "ARR", "COH", "DUT", "PRO", "RIV", "STI"],
 "SIL":["ACC", "ALL", "AMB", "CRF", "CUR", "DOD", "ELO", "FTH", "FRI", "GOT", "HOA", "HOT", "INC", "IND", "EAR", "NIT", "QUI", "RES", "STW", "TIR", "TRV", "VAR", "WEM", "WIS", "WOO", "ARR", "COH", "DUT", "PRO", "RIV", "STI"],
@@ -683,7 +683,7 @@ mibacks = {"N":"None", "BEO":"Beorning (Middle Man)", "DUL":"Dunlending (Middle 
 mdbacks = {"N":"None", "EAS":"Easterling (Man of Darkness)", "SOU":"Southron Tribesman (Man of Darkness)"}
 dubacks = {"N":"None", "MOM":"Man of Minas Tirith (Dunadan)"}
 
-backs = {"D":dwbacks, "NOL":nobacks, "SIN":snbacks, "SIL":slbacks, "FAL":fabacks, "HAR":habacks, "STO":habacks, "DUN":dubacks, "MID":mibacks, "MOD":mdbacks, "WM":mdbacks}
+backs = {"DWA":dwbacks, "NOL":nobacks, "SIN":snbacks, "SIL":slbacks, "FAL":fabacks, "HAR":habacks, "STO":habacks, "DUN":dubacks, "MID":mibacks, "MOD":mdbacks, "WM":mdbacks}
 
 bgskilladjs = {
 "N":collections.OrderedDict(sorted({
