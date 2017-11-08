@@ -228,7 +228,8 @@ def createchar():
 	 
 	char.output()
 	char.save()
+	return(char)
 
 
 #TESTING
-createchar()
+#createchar()
