@@ -23,19 +23,19 @@ def app():
     while run == True:
         command = input("> ").upper()
 
-        if command == "QUIT":
+        if command in QUIT:
             run = False
 
-        elif command == "NEW":
+        elif command in NEW:
             curchar = createchar()
 
-        elif command == "SKILL":
+        elif command in SKILL:
             skilltrans()
 
-        elif command == "TRAIT":
+        elif command in TRAIT:
             traittrans()
 
-        elif command == "LOAD":
+        elif command in LOAD:
             cwd = os.getcwd()
             dirname = os.path.join(cwd, 'characters', 'storage')
             chars = os.listdir(dirname)
@@ -50,9 +50,23 @@ def app():
             else:
                 print('No such Character\n')
         
-        elif command == "PRINT":
+        elif command in PRINT:
             if curchar != None:
                 curchar.output()
+            else:
+                print("No character loaded!\n")
+
+        elif command in EDIT:
+            if curchar != None:
+                editing = True
+                while editing == True:
+                    field = input("Enter Field: ").lower()
+                    if field in done:
+                        editing = False
+                    
+                        
+            else:
+                print("No character loaded!\n")
         
 
 

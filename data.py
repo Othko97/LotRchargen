@@ -2,6 +2,17 @@
 
 import collections
 
+#CONSOLE COMMANDS
+QUIT = ["QUIT", "Q", "EXIT"]
+NEW = ["NEW", "NEW CHAR", "CREATE", "CREATE CHAR"]
+SKILL = ["SKILL", "TRANSLATE SKILLS", "TRANSLATE SKILL", "SKILL TRANSLATE", "TRNSL SKL"]
+TRAIT = ["TRAIT", "TRANSLATE TRAITS", "TRANSLATE TRAIT", "TRAIT TRANSLATE", "TRNSL TRT"]
+LOAD = ["LOAD", "IMPORT", "EXISTING CHAR", "OPEN"]
+PRINT = ["PRINT", "OUTPUT", "DISPLAY"]
+EDIT = ["EDIT", "ALTER", "CHANGE"]
+
+done = ["save", "done", "end", "finished"]
+
 #ATTRIBUTES
 attrtemp = collections.OrderedDict(sorted({"BRG":0, "NIM":0, "PER":0, "STR":0, "VIT":0, "WIT":0}.items()))
 
