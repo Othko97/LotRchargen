@@ -236,153 +236,152 @@ def attrmod(list):
 
 class Char():
 
-    def __init__(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, ren, langs, lore):
-        self.name = name
-        self.race = race
-        self.order = order
-        self.attrs = attrs
-        self.attrmods = attrmods
-        self.reas = reas
-        self.hp = hp
-        self.wls = wls
-        self.dfce = dfce
-        self.cou = cou
-        self.corr = corr
-        self.skills = skills
-        self.traits = traits
-        self.abilities = abilities
-        self.level = level
-        self.ren = ren
-        self.langs = langs
-        self.lore = lore
-        print("\nCharacter Created!\n")
+	def __init__(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, ren, langs, lore):
+		self.name = name
+		self.race = race
+		self.order = order
+		self.attrs = attrs
+		self.attrmods = attrmods
+		self.reas = reas
+		self.hp = hp
+		self.wls = wls
+		self.dfce = dfce
+		self.cou = cou
+		self.corr = corr
+		self.skills = skills
+		self.traits = traits
+		self.abilities = abilities
+		self.level = level
+		self.ren = ren
+		self.langs = langs
+		self.lore = lore
+		print("\nCharacter Created!\n")
 
-    def update(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, ren, langs, lore):
-        self.name = name
-        self.race = race
-        self.order = order
-        self.attrs = attrs
-        self.attrmods = attrmods
-        self.reas = reas
-        self.hp = hp
-        self.wls = wls
-        self.dfce = dfce
-        self.cou = cou
-        self.corr = corr
-        self.skills = skills
-        self.traits = traits
-        self.abilities = abilities
-        self.level = level
-        self.ren = ren
-        self.langs = langs
-        self.lore = lore
-        self.save()
-        print("\nCharacter Updated!\n")
+	def update(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, ren, langs, lore):
+		self.name = name
+		self.race = race
+		self.order = order
+		self.attrs = attrs
+		self.attrmods = attrmods
+		self.reas = reas
+		self.hp = hp
+		self.wls = wls
+		self.dfce = dfce
+		self.cou = cou
+		self.corr = corr
+		self.skills = skills
+		self.traits = traits
+		self.abilities = abilities
+		self.level = level
+		self.ren = ren
+		self.langs = langs
+		self.lore = lore
+		self.save()
+		print("\nCharacter Updated!\n")
 
-    def save(self):
-        cwd = os.getcwd()
-        dirname = cwd + '\\characters\\'
-        if not os.path.exists(dirname):
-            os.makedirs(dirname)
-        os.chdir(dirname)
-        char = open(self.name + '.txt', 'w+')
+	def save(self):
+		cwd = os.getcwd()
+		dirname = os.path.join(cwd, 'characters')
+		if not os.path.exists(dirname):
+			os.makedirs(dirname)
+		os.chdir(dirname)
+		with open(self.name + '.txt', 'w+') as char:
 
-        char.write('Name: ' + self.name)
-        char.write('\nLevel: ' +str(self.level))
-        char.write('\nRace: ' + races[self.race])
-        char.write('\nOrders:\n')
-        for i in self.order:
-            char.write(i + '\n')
-        char.write('\n\nAttributes:\n')
-        buffer = []
-        for i in self.attrs:
-            buffer.append([str(i), str(self.attrs[i]), str(self.attrmods[i])])
-        col_width = max(len(word) for row in buffer for word in row) + 2  # padding
-        for row in buffer:
-            char.write(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
-        char.write('\n\nReactions: \n')
-        for i in self.reas:
-            char.write('\n' + str(i) + '\t' +  str(self.reas[i]))
-        char.write('\n\nHP: ' + str(self.hp))
-        char.write('\nWound Levels: ' + str(self.wls))
-        char.write('\nDefence: ' + str(self.dfce))
-        char.write('\nCourage: ' + str(self.cou))
-        char.write('\nCorruption: ' + str(self.corr))
-        char.write('\nRenown: ' + str(self.ren))
-        char.write('\n\nSkills:\n')
-        buffer = []
-        for i in self.skills:
-            buffer.append([str(i), str(skillnames[i]), str(self.skills[i])])
-        col_width = max(len(word) for row in buffer for word in row) + 2  # padding
-        for row in buffer:
-            char.write(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
-        char.write('\n\nTraits:\n')
-        buffer = []
-        for i in self.traits:
-            if self.traits[i] > 0:
-                buffer.append([str(i), str(traitnames[i]), str(self.traits[i])])
-        col_width = max(len(word) for row in buffer for word in row) + 2  # padding
-        for row in buffer:
-            char.write(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
-        char.write('\n\nAbilities: ')
-        for i in self.abilities:
-            char.write('\n' + i)
-        char.write('\n\nLanguages: ')
-        for i in self.langs:
-            char.write('\n' + i[0])
-        char.write('\n\nLore Skills: ')
-        for i in self.lore:
-            char.write('\n' + i[0])
+			char.write('Name: ' + self.name)
+			char.write('\nLevel: ' +str(self.level))
+			char.write('\nRace: ' + races[self.race])
+			char.write('\nOrders:\n')
+			for i in self.order:
+				char.write(i + '\n')
+			char.write('\n\nAttributes:\n')
+			buffer = []
+			for i in self.attrs:
+				buffer.append([str(i), str(self.attrs[i]), str(self.attrmods[i])])
+			col_width = max(len(word) for row in buffer for word in row) + 2  # padding
+			for row in buffer:
+				char.write(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
+			char.write('\n\nReactions: \n')
+			for i in self.reas:
+				char.write('\n' + str(i) + '\t' +  str(self.reas[i]))
+			char.write('\n\nHP: ' + str(self.hp))
+			char.write('\nWound Levels: ' + str(self.wls))
+			char.write('\nDefence: ' + str(self.dfce))
+			char.write('\nCourage: ' + str(self.cou))
+			char.write('\nCorruption: ' + str(self.corr))
+			char.write('\nRenown: ' + str(self.ren))
+			char.write('\n\nSkills:\n')
+			buffer = []
+			for i in self.skills:
+				buffer.append([str(i), str(skillnames[i]), str(self.skills[i])])
+			col_width = max(len(word) for row in buffer for word in row) + 2  # padding
+			for row in buffer:
+				char.write(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
+			char.write('\n\nTraits:\n')
+			buffer = []
+			for i in self.traits:
+				if self.traits[i] > 0:
+					buffer.append([str(i), str(traitnames[i]), str(self.traits[i])])
+			col_width = max(len(word) for row in buffer for word in row) + 2  # padding
+			for row in buffer:
+				char.write(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
+			char.write('\n\nAbilities: ')
+			for i in self.abilities:
+				char.write('\n' + i)
+			char.write('\n\nLanguages: ')
+			for i in self.langs:
+				char.write('\n' + i[0])
+			char.write('\n\nLore Skills: ')
+			for i in self.lore:
+				char.write('\n' + i[0])
 
-        char.close()
+		dirname = os.path.join(cwd, 'characters','storage')
+		if not os.path.exists(dirname):
+			os.makedirs(dirname)
+		os.chdir(dirname)
+		with open(self.name + '.py', 'wb') as char:
+			pickle.dump(self, char)
 
-        dirname = cwd + '\\characters\\storage\\'
-        if not os.path.exists(dirname):
-            os.makedirs(dirname)
-        os.chdir(dirname)
-        char = open(self.name + '.py', 'wb')
-        pickle.dump(self, char)
-        char.close()
+		os.chdir(cwd)
 
-    def output(self):
-        print('Name: ' + self.name)
-        print('\nRace: ' + races[self.race])
-        print('\nOrders:\n')
-        for i in self.order:
-            print(i + '\n')
-        print('\n\nAttributes:')
-        buffer = []
-        for i in self.attrs:
-            buffer.append([str(i), str(self.attrs[i]), str(self.attrmods[i])])
-        col_width = max(len(word) for row in buffer for word in row) + 2  # padding
-        for row in buffer:
-            print(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
-        print('\n\nReactions:')
-        for i in self.reas:
-            print('\n' + str(i) + '\t' +  str(self.reas[i]))
-        print('\n\nHP: ' + str(self.hp))
-        print('\nWound Levels: ' + str(self.wls))
-        print('\nDefence: ' + str(self.dfce))
-        print('\nCourage: ' + str(self.cou))
-        print('\nCorruption: ' + str(self.corr))
-        print('\n\nSkills:')
-        buffer = []
-        for i in self.skills:
-            buffer.append([str(i), str(skillnames[i]), str(self.skills[i])])
-        col_width = max(len(word) for row in buffer for word in row) + 2  # padding
-        for row in buffer:
-            print(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
-        print('\n\nTraits:')
-        buffer = []
-        for i in self.traits:
-            if self.traits[i] > 0:
-                buffer.append([str(i), str(traitnames[i]), str(self.traits[i])])
-        col_width = max(len(word) for row in buffer for word in row) + 2  # padding
-        for row in buffer:
-            print(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
-        print('\n\nAbilities: ')
-        for i in self.abilities:
-            print(i + "\n")
+	def output(self):
+		print('Name: ' + self.name)
+		print('\nRace: ' + races[self.race])
+		print('\nOrders:\n')
+		for i in self.order:
+			print(i + '\n')
+		print('\n\nAttributes:')
+		buffer = []
+		for i in self.attrs:
+			buffer.append([str(i), str(self.attrs[i]), str(self.attrmods[i])])
+		col_width = max(len(word) for row in buffer for word in row) + 2  # padding
+		for row in buffer:
+			print(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
+		print('\n\nReactions:')
+		for i in self.reas:
+			print('\n' + str(i) + '\t' +  str(self.reas[i]))
+		print('\n\nHP: ' + str(self.hp))
+		print('\nWound Levels: ' + str(self.wls))
+		print('\nDefence: ' + str(self.dfce))
+		print('\nCourage: ' + str(self.cou))
+		print('\nCorruption: ' + str(self.corr))
+		print('\n\nSkills:')
+		buffer = []
+		for i in self.skills:
+			buffer.append([str(i), str(skillnames[i]), str(self.skills[i])])
+		col_width = max(len(word) for row in buffer for word in row) + 2  # padding
+		for row in buffer:
+			print(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
+		print('\n\nTraits:')
+		buffer = []
+		for i in self.traits:
+			if self.traits[i] > 0:
+				buffer.append([str(i), str(traitnames[i]), str(self.traits[i])])
+		col_width = max(len(word) for row in buffer for word in row) + 2  # padding
+		for row in buffer:
+			print(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
+		print('\n\nAbilities: ')
+		for i in self.abilities:
+			print(i + "\n")
 
 
 
@@ -420,20 +419,19 @@ class Player(Char):
 	def save(self):
 		super(Player, self).save()
 		cwd = os.getcwd()
-		os.chdir(cwd + "\\characters\\")
-		char = open(self.name + ".txt", "a")
-		char.write("\n\nPersonal Details:")
-		char.write("\nGender: "  + self.gender)
-		char.write("\nAge: " + self.age)
-		char.write("\nBirthday: " + self.birthday)
-		char.write("\nHeight: " + self.height)
-		char.write("\nWeight: " + self.weight)
-		char.write("\nHair Colour: " + self.hair)
-		char.write("\nEye Colour: " + self.eyes)
-		char.write("\nSkin Colour: " + self.skin)
-		char.write("\nHandedness: " + self.handedness)
-		char.write("\nHomeland: " + self.homeland)
-		char.close()
+		os.chdir(os.path.join(cwd, 'characters'))
+		with open(self.name + ".txt", "a") as char:
+			char.write("\n\nPersonal Details:")
+			char.write("\nGender: "  + self.gender)
+			char.write("\nAge: " + self.age)
+			char.write("\nBirthday: " + self.birthday)
+			char.write("\nHeight: " + self.height)
+			char.write("\nWeight: " + self.weight)
+			char.write("\nHair Colour: " + self.hair)
+			char.write("\nEye Colour: " + self.eyes)
+			char.write("\nSkin Colour: " + self.skin)
+			char.write("\nHandedness: " + self.handedness)
+			char.write("\nHomeland: " + self.homeland)
 
 	def output(self):
 		super(Player, self).output()
