@@ -10,7 +10,12 @@ import collections
 import os
 import pickle
 
+###########
+#CONSTANTS#
+###########
 
+npcparameters = ['name', 'race', 'order', 'attrs', 'attrmods', 'reas', 'hp', 'wls', 'dfce', 'cou', 'corr', 'skills', 'traits', 'abilities', 'level', 'ren', 'langs', 'lore']
+pcparameters  = ['gender', 'age', 'birthday', 'height', 'weight', 'hair', 'eyes', 'skin', 'handedness', 'homeland']
 
 
 ################################
@@ -432,6 +437,7 @@ class Player(Char):
 			char.write("\nSkin Colour: " + self.skin)
 			char.write("\nHandedness: " + self.handedness)
 			char.write("\nHomeland: " + self.homeland)
+		os.chdir(cwd)
 
 	def output(self):
 		super(Player, self).output()
