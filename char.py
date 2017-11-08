@@ -391,8 +391,8 @@ class Char():
 #PLAYER CHARACTERS#
 ###################
 class Player(Char):
-	def __init__(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, gender, age, birthday, height, weight, hair, eyes, skin, handedness, homeland):
-		Char.__init__(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level)
+	def __init__(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, ren, langs, lore, gender, age, birthday, height, weight, hair, eyes, skin, handedness, homeland):
+		Char.__init__(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, ren, langs, lore)
 		self.gender = gender
 		self.age = age
 		self.birthday = birthday
@@ -404,7 +404,50 @@ class Player(Char):
 		self.handedness = handedness
 		self.homeland = homeland
 
+	def update(self, name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, gender, age, birthday, height, weight, hair, eyes, skin, handedness, homeland):
+		self.gender = gender
+		self.age = age
+		self.birthday = birthday
+		self.height = height
+		self.weight = weight
+		self.hair = hair
+		self.eyes = eyes
+		self.skin = skin
+		self.handedness = handedness
+		self.homeland = homeland
+		super(Player, self).update(name, race, order, attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, ren, langs, lore)
 
+	def save(self):
+		super(Player, self).save()
+		cwd = os.getcwd()
+		os.chdir(cwd + "\\characters\\")
+		char = open(self.name + ".txt", "a")
+		char.write("\n\nPersonal Details:")
+		char.write("\nGender: "  + self.gender)
+		char.write("\nAge: " + self.age)
+		char.write("\nBirthday: " + self.birthday)
+		char.write("\nHeight: " + self.height)
+		char.write("\nWeight: " + self.weight)
+		char.write("\nHair Colour: " + self.hair)
+		char.write("\nEye Colour: " + self.eyes)
+		char.write("\nSkin Colour: " + self.skin)
+		char.write("\nHandedness: " + self.handedness)
+		char.write("\nHomeland: " + self.homeland)
+		char.close()
+
+	def output(self):
+		super(Player, self).output()
+		print("\n\nPersonal Details:")
+		print("\nGender: "  + self.gender)
+		print("\nAge: " + self.age)
+		print("\nBirthday: " + self.birthday)
+		print("\nHeight: " + self.height)
+		print("\nWeight: " + self.weight)
+		print("\nHair Colour: " + self.hair)
+		print("\nEye Colour: " + self.eyes)
+		print("\nSkin Colour: " + self.skin)
+		print("\nHandedness: " + self.handedness)
+		print("\nHomeland: " + self.homeland)
 
 
 

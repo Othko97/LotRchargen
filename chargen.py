@@ -222,7 +222,7 @@ def createchar():
 
 	#Create character object
 	if pc:
-		char = Player(name, race, [order], attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, gender, age, birthday, height, weight, hair, eyes, skin, handedness, homeland)
+		char = Player(name, race, [order], attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, ren, langs, lore, gender, age, birthday, height, weight, hair, eyes, skin, handedness, homeland)
 	else:
 		char = Char(name, race, [order], attrs, attrmods, reas, hp, wls, dfce, cou, corr, skills, traits, abilities, level, ren, langs, lore)
 	 
