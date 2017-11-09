@@ -11,7 +11,7 @@ LOAD = ["LOAD", "IMPORT", "EXISTING CHAR", "OPEN"]
 PRINT = ["PRINT", "OUTPUT", "DISPLAY"]
 EDIT = ["EDIT", "ALTER", "CHANGE"]
 
-done = ["save", "done", "end", "finished"]
+done = ["save", "done", "end", "finished", "quit", "q", "exit"]
 
 #ATTRIBUTES
 attrtemp = collections.OrderedDict(sorted({"BRG":0, "NIM":0, "PER":0, "STR":0, "VIT":0, "WIT":0}.items()))
