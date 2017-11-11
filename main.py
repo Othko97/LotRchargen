@@ -23,17 +23,27 @@ def app():
     while run == True:
         command = input("> ").upper()
 
+
+
         if command in QUIT:
             run = False
+
+
 
         elif command in NEW:
             curchar = createchar()
 
+
+
         elif command in SKILL:
             skilltrans()
 
+
+
         elif command in TRAIT:
             traittrans()
+
+
 
         elif command in LOAD:
             cwd = os.getcwd()
@@ -49,12 +59,16 @@ def app():
                 curchar = pickle.load(open(os.path.join(dirname, name + '.py'), 'rb'))
             else:
                 print('No such Character\n')
-        
+
+
+
         elif command in PRINT:
             if curchar != None:
                 curchar.output()
             else:
                 print("No character loaded!\n")
+
+
 
         elif command in EDIT:
 
@@ -196,7 +210,7 @@ def app():
                         lanlor = input(">> ")
                         llist = getattr(curchar, field)
                         for x in llist:
-                            if lanlor = x[0]:
+                            if lanlor == x[0]:
                                 x[1] += 1
                                 check = 1
                             if check ==  0:
@@ -212,6 +226,9 @@ def app():
                 print("No character loaded!\n")
         
 
+
+        else:
+            pass
 
 app()
             
