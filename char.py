@@ -386,7 +386,13 @@ class Char():
 			print(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
 		print('\n\nAbilities: ')
 		for i in self.abilities:
-			print(i + "\n")
+			print(i + "\n")	
+		print('\n\nLanguages: ')
+		for i in self.langs:
+			print('\n' + i[0])
+		print('\n\nLore Skills: ')
+		for i in self.lore:
+			print('\n' + i[0])
 
 
 
