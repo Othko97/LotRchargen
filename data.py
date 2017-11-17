@@ -1193,3 +1193,15 @@ rogabils = ["Fleet-Footed", "Lockpicking", "Lurking in Shadows", "Sanctuary"]
 warabils = ["Battle-Hardened", "Evasion", "Favoured Weapon", "Swift Strike", "Warrior-born"]
 
 orderabils = {"BAR":barabils, "CRA":craabils, "LOR":lorabils, "MAG":magabils, "MAR":marabils, "MIN":minabils, "NOB":nobabils, "ROG":rogabils, "WAR":warabils}
+
+#Advancement options
+
+advops = collections.OrderedDict(sorted({"ORDSKI": "Order Skill", "RACSKI": "Racial Skill", "SPEC": "Specialty", "EDGE": "Edge", "NORDSKI": "Non-Order Skill", "REN": "Renown", "FREA": "Favoured Reaction", "NFREA": "Non-Favoured Reaction", "ORDABI": "Order Ability", "COU": "Courage", "FATTR": "Favoured Attribute", "NFATTR": "Non-Favoured Attribute", "HP": "Health", "ORDER": "New Order"}.items()))
+
+advpoints = [
+["ORDSKI", "RACSKI", "SPEC"],           #1 point advances
+["EDGE", "NORDSKI", "REN", "FREA"],     #2 point advances
+["NFREA", "ORDABI", "COU"],             #3 point advances
+["FATTR"],                              #4 point advances
+["NFATTR", "HP", "ORDER"]               #5 point advances
+]
