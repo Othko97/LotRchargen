@@ -50,3 +50,17 @@ def attrmod(list):
 			out.append((i // 2)-3)
 	return(out)
 
+#EQUAL SPACED PRINTING
+  #Spaces lists of data into columns
+  #Prints a list of strings ready to be printed line by line
+
+def evenspace(header, buffer):
+  buffer.insert(0, header)
+  numcols = len(header)
+  print(numcols)
+  col_widths = [(max(len(row[i]) for row in buffer) + 2) for i in range(numcols)]
+  for row in buffer:
+    printline = ""
+    for i in range(numcols):
+      printline += row[i].ljust(col_widths[i])
+    print(printline)
