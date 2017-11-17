@@ -5,6 +5,7 @@
 #########
 
 from data import *
+from functions import *
 import random as R
 import collections
 import os

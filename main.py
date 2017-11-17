@@ -11,6 +11,7 @@ from chargen import *
 from data import *
 from traittranslator import *
 from skilltranslator import *
+from functions import *
 
 ###############
 #MAIN FUNCTION#

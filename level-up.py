@@ -5,6 +5,7 @@
 #########
 from char import *
 from data import *
+from functions import *
 #imports for testing only, remove later
 import os 
 import pickle 

@@ -9,6 +9,7 @@ import os
 import collections
 from data import *
 from char import *
+from functions import *
 
 
 

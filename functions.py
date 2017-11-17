@@ -4,7 +4,6 @@
 #IMPORTS#
 #########
 import random as R
-from data import *
 
 
 ###########
