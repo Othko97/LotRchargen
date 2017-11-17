@@ -23,8 +23,7 @@ pcparameters  = ['gender', 'age', 'birthday', 'height', 'weight', 'hair', 'eyes'
 ################################
 
 #RACIAL SKILL INCREASE
-#
-#Increase a racial skill or trait
+	#Increase a racial skill or trait
 	#Returns 3-tuple of skills, traits and a check that a skill was actually increased
 
 def racincskill(race, skills, traits):
@@ -82,8 +81,7 @@ def racincskill(race, skills, traits):
 
 
 #INCREASE ORDER SKILL
-#
-#Increase an order skill
+	#Increase an order skill
 	#Returns a 2-tuple of skills and a check that a skill was increased
 
 def ordincskill(order, skills):
@@ -118,8 +116,7 @@ def ordincskill(order, skills):
 
 
 #CHOOSE PACKAGE TRAIT
-#
-#Choose an edge for a background package
+	#Choose an edge for a background package
 	#Returns a 2-tuple of traits and a check that a trait was actually taken
 
 def packagechoosetrait(order, pack, traits):
@@ -152,8 +149,7 @@ def packagechoosetrait(order, pack, traits):
 
 
 #CHOOSE AN EDGE
-#
-#Takes an edge
+	#Takes an edge
 	#Returns a 2-tuple of traits and a check
 
 def choosetrait(traits):
@@ -191,9 +187,8 @@ def choosetrait(traits):
 
 
 #ROLL 2 D6
-#
-#Simulates rolling of 2d6
-    #Returns integer
+	#Simulates rolling of 2d6
+  #Returns integer
 
 def twoDsix():
 	x = R.randint(1,6)
@@ -202,9 +197,8 @@ def twoDsix():
 
 
 #MATRIX ADDITION FOR LISTS
-#
-#Adds two lists together elementwise
-    #Returns list
+	#Adds two lists together elementwise
+  #Returns list
 
 def add(list1, list2):
 	list = []
@@ -214,9 +208,8 @@ def add(list1, list2):
 
 
 #ATTRIBUTE MODIFIERS
-#
-#Calculates attribute modifiers for a given set of attributes
-    #Returns list of modifiers
+	#Calculates attribute modifiers for a given set of attributes
+	#Returns list of modifiers
 
 def attrmod(list):
 	out = []
@@ -458,40 +451,3 @@ class Player(Char):
 		print("\nSkin Colour: " + self.skin)
 		print("\nHandedness: " + self.handedness)
 		print("\nHomeland: " + self.homeland)
-
-
-
-
-#TESTING
-#
-#Earendil = Char(name="Earendil",
-#race="NOL",
-#order=["MAR"],
-#attrs=collections.OrderedDict(sorted({"BRG":0, "NIM":0, "PER":0, "STR":0, "VIT":0, "WIT":0}.items())),
-#attrmods=collections.OrderedDict(sorted({"BRG":0, "NIM":0, "PER":0, "STR":0, "VIT":0, "WIT":0}.items())),
-#reas=collections.OrderedDict(sorted({"STA":0, "SWI":0, "WIL":0, "WIS":0}.items())),
-#hp=10,
-#wls=5,
-#dfce=10,
-#cou=3,
-#corr=0,
-#skills=collections.OrderedDict(sorted({
-#"ACR":0, "APP":0, "ARM":0, "CLI":0, "CON":0, "CRA":0, "DEB":0, "GAM":0, "GUI":0, "HEA":0, "INQ":0, "ING":0, "INP":0, "INM":0, "JUM":0, "LAN":0, "LEG":0, "LOR":0,
-#"MIM":0, "OBS":0, "PER":0, "PRS":0, "RAN":0, "RID":4, "RUN":4, "SEA":0, "SRC":0, "SIE":0, "SMI":2, "STE":4, "STO":0, "SUR":0, "SWI":0, "TEA":0, "TRA":0, "UNA":0,
-#"WEA":0
-#}.items())),
-#traits=collections.OrderedDict(sorted({
-#"ACC":0, "ALL":0, "AMB":0, "AOH":0, "BOL":0, "CHL":0, "COM":0, "CRF":0, "CUR":0, "DOD":0, "DOU":0, "ELF":0, "ELO":0, "FAI":0, "FTH":0, "FOF":0, "FEH":0, "FOR":0,
-#"FRI":0, "FUR":0, "GOT":0, "HAM":0, "HAR":0, "HEL":0, "HOA":0, "HOT":0, "HOI":0, "INC":0, "IND":0, "EAR":0, "EYE":0, "NOS":0, "LIO":0, "NIT":0, "QUI":0, "RAN":0,
-#"RES":0, "STE":0, "STW":0, "SWR":0, "TIR":0, "TRV":0, "TWO":0, "VAT":0, "VAR":0, "WAK":0, "WAH":0, "WAW":0, "WAR":0, "WEM":0, "WIS":0, "WOO":0, "ARR":0, "BAT":0,
-#"COH":0, "CRV":0, "CRI":0, "DAR":0, "DUM":0, "DEA":0, "DEY":0, "DUT":0, "ENE":0, "FEA":0, "FEY":0, "GRA":0, "HAT":0, "OAT":0, "PRO":0, "REC":0, "RIV":0, "SLO":0,
-#"STI":0, "WEK":0, "WEW":0
-#}.items())),
-#abilities=[],
-#level=1,
-#ren=0,
-#langs=["Sindarin"],
-#lore=["Gondolin", "Sea"]
-#)
-#
-#Earendil.save()
