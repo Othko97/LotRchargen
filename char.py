@@ -251,15 +251,17 @@ class Char():
 			for i in self.order:
 				char.write(i + '\n')
 			char.write('\n\nAttributes:\n')
+			header = ["ATTRIBUTE", "LVL", "MOD"]
 			buffer = []
 			for i in self.attrs:
 				buffer.append([str(i), str(self.attrs[i]), str(self.attrmods[i])])
-			col_width = max(len(word) for row in buffer for word in row) + 2  # padding
-			for row in buffer:
-				char.write(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
+			evenspace(header, buffer, char)
 			char.write('\n\nReactions: \n')
+			header = ["REACTION", "MOD"]
+			buffer = []
 			for i in self.reas:
-				char.write('\n' + str(i) + '\t' +  str(self.reas[i]))
+				buffer.append([str(i), str(self.reas[i])])
+			evenspace(header, buffer, char)
 			char.write('\n\nHP: ' + str(self.hp))
 			char.write('\nWound Levels: ' + str(self.wls))
 			char.write('\nDefence: ' + str(self.dfce))
@@ -267,29 +269,29 @@ class Char():
 			char.write('\nCorruption: ' + str(self.corr))
 			char.write('\nRenown: ' + str(self.ren))
 			char.write('\n\nSkills:\n')
+			header = ["CODE", "SKILL", "LVL"]
 			buffer = []
 			for i in self.skills:
 				buffer.append([str(i), str(skillnames[i]), str(self.skills[i])])
-			col_width = max(len(word) for row in buffer for word in row) + 2  # padding
-			for row in buffer:
-				char.write(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
+			evenspace(header, buffer, char)
 			char.write('\n\nTraits:\n')
+			header = ["CODE", "TRAIT", "LVL"]
 			buffer = []
 			for i in self.traits:
 				if self.traits[i] > 0:
 					buffer.append([str(i), str(traitnames[i]), str(self.traits[i])])
-			col_width = max(len(word) for row in buffer for word in row) + 2  # padding
-			for row in buffer:
-				char.write(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
+			evenspace(header, buffer, char)
 			char.write('\n\nAbilities: ')
 			for i in self.abilities:
 				char.write('\n' + i)
 			char.write('\n\nLanguages: ')
-			for i in self.langs:
-				char.write('\n' + i[0])
+			header = ["LANGUAGE", "LVL"]
+			buffer = self.langs
+			evenspace(header, buffer, char)
 			char.write('\n\nLore Skills: ')
-			for i in self.lore:
-				char.write('\n' + i[0])
+			header = ["LORE", "LVL"]
+			buffer = self.lore
+			evenspace(header, buffer, char)
 
 		dirname = os.path.join(cwd, 'characters','storage')
 		if not os.path.exists(dirname):
@@ -307,44 +309,46 @@ class Char():
 		for i in self.order:
 			print(i + '\n')
 		print('\n\nAttributes:')
+		header = ["ATTRIBUTE", "LVL", "MOD"]
 		buffer = []
 		for i in self.attrs:
 			buffer.append([str(i), str(self.attrs[i]), str(self.attrmods[i])])
-		col_width = max(len(word) for row in buffer for word in row) + 2  # padding
-		for row in buffer:
-			print(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
+		evenspace(header, buffer)
 		print('\n\nReactions:')
+		header = ["REACTION", "LVL"]
+		buffer = []
 		for i in self.reas:
-			print('\n' + str(i) + '\t' +  str(self.reas[i]))
+			buffer.append([str(i), str(self.reas[i])])
+		evenspace(header, buffer)
 		print('\n\nHP: ' + str(self.hp))
 		print('\nWound Levels: ' + str(self.wls))
 		print('\nDefence: ' + str(self.dfce))
 		print('\nCourage: ' + str(self.cou))
 		print('\nCorruption: ' + str(self.corr))
 		print('\n\nSkills:')
+		header = ["CODE", "SKILL", "LVL"]
 		buffer = []
 		for i in self.skills:
 			buffer.append([str(i), str(skillnames[i]), str(self.skills[i])])
-		col_width = max(len(word) for row in buffer for word in row) + 2  # padding
-		for row in buffer:
-			print(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
+		evenspace(header, buffer)
 		print('\n\nTraits:')
+		header = ["CODE", "TRAIT", "LVL"]
 		buffer = []
 		for i in self.traits:
 			if self.traits[i] > 0:
 				buffer.append([str(i), str(traitnames[i]), str(self.traits[i])])
-		col_width = max(len(word) for row in buffer for word in row) + 2  # padding
-		for row in buffer:
-			print(row[0].ljust(4) + row[1].ljust(col_width) + row[2].ljust(3)+"\n")
+		evenspace(header, buffer)
 		print('\n\nAbilities: ')
 		for i in self.abilities:
 			print(i + "\n")	
 		print('\n\nLanguages: ')
-		for i in self.langs:
-			print('\n' + i[0])
+		header = ["LANGUAGE", "LVL"]
+		buffer = self.langs
+		evenspace(header, buffer)
 		print('\n\nLore Skills: ')
-		for i in self.lore:
-			print('\n' + i[0])
+		header = ["LORE", "LVL"]
+		buffer = self.lore
+		evenspace(header, buffer)
 
 
 

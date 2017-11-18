@@ -19,15 +19,16 @@ def levelup(char):
   while points > 0:
     print ("\nChoose an advancement from the list below: \n")
     
-    buffer = [["NUM", "CODE", "EFFECT", "COST"]]
+    header = ["NUM", "CODE", "EFFECT", "COST"]
+    buffer = []
+    count = 1
     for level in range(points):
       for opt in advpoints[level]:
-        buffer.append([opt, advops[opt], str(level + 1)])
-    col_widths = [(max(len(row[i]) for row in buffer) + 2) for i in range(3)]  # padding
-    print(col_widths)
-    for row in buffer:
-      print(row[0].ljust(col_widths[0]) + row[1].ljust(col_widths[1]) + row[2].ljust(col_widths[2])+"\n")
-    
+        buffer.append([str(count), opt, advops[opt], str(level + 1)])
+        count += 1
+
+    evenspace(header, buffer)
+
     code = input("> ").upper()
 
 #########
