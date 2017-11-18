@@ -45,7 +45,7 @@ def attrmod(list):
 	return(out)
 
 #EQUAL SPACED PRINTING
-def evenspace(header, buffer):
+def evenspace(header, buffer, file=None):
 	"""Spaces data evenly into columns for pretty printing
 		 Prints a table, returns nothing"""
   buffer.insert(0, header)
@@ -55,4 +55,7 @@ def evenspace(header, buffer):
     printline = ""
     for i in range(numcols):
       printline += str(row[i]).ljust(col_widths[i])
-    print(printline)
+    if file is None:
+			print(printline)
+		else:
+			file.write(printline)
