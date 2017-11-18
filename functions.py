@@ -48,14 +48,11 @@ def attrmod(list):
 def evenspace(header, buffer, file=None):
 	"""Spaces data evenly into columns for pretty printing
 		 Prints a table, returns nothing"""
-  buffer.insert(0, header)
-  numcols = len(header)
-  col_widths = [(max(len(str(row[i])) for row in buffer) + 2) for i in range(numcols)]
-  for row in buffer:
-    printline = ""
-    for i in range(numcols):
-      printline += str(row[i]).ljust(col_widths[i])
-    if file is None:
-			print(printline)
-		else:
-			file.write(printline)
+	buffer.insert(0, header)
+	numcols = len(header)
+	col_widths = [(max(len(str(row[i])) for row in buffer) + 2) for i in range(numcols)]
+	for row in buffer:
+		printline = ""
+		for i in range(numcols):
+			printline += str(row[i]).ljust(col_widths[i])
+		print(printline, file=file)
